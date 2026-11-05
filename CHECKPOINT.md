@@ -9,7 +9,7 @@ Team: Abdelrahman Naser, Mark Tymoshenko, Daniel Mulraney · ECE 424 Fall 2026 �
 | 3 | Bounded-contribution plan | [`docs/contribution_plan.md`](docs/contribution_plan.md) |
 | 4 | Evidence of each member's work | [`docs/team_progress.md`](docs/team_progress.md) + `git log` |
 | 5 | Updated protocol and logs | [`docs/protocol.md`](docs/protocol.md), [`logs/LOG.md`](logs/LOG.md), raw outputs in [`runs/20261104_baseline/`](runs/20261104_baseline/) |
-| 6 | Fallback trace | `runs/20261104_baseline/` at git tag **`checkpoint-2026-11-04`** — details below |
+| 6 | Fallback trace | `runs/20261104_baseline/` at commit **`6874178`** — details below |
 
 ## 1. Baseline status
 
@@ -51,7 +51,7 @@ S2/S3 also caught a real harness bug during development: the first scored run re
 
 ## 6. Fallback trace
 
-If a later snapshot is missing or invalid, use **`runs/20261104_baseline/`** at git tag **`checkpoint-2026-11-04`**:
+If a later snapshot is missing or invalid, use **`runs/20261104_baseline/`** at commit **`6874178`** (`git checkout 6874178`; browse at https://github.com/speed7861/intro-to-network-security-2026-fall/tree/6874178/runs/20261104_baseline):
 
 - primary: `runs/20261104_baseline/cg2020/` — `cg2020_raw.json` (raw tool output), `cg2020_manifest.txt` (command, versions, exit code, input/output SHA-256), `scored/` (per-case CSV + summary);
 - failure trace: `runs/20261104_baseline/sanity/trace_PredictableCryptographicKeyBBCase1.log`;

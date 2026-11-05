@@ -29,7 +29,7 @@ Baseline result (run `runs/20261104_baseline`, all 112 cases, case-level scoring
 ## Quick start (Ubuntu 22.04/24.04, ~10 min, no Maven Central or Gradle needed)
 
 ```bash
-git clone https://github.com/<owner>/intro-to-network-security-2026-fall.git
+git clone https://github.com/speed7861/intro-to-network-security-2026-fall.git
 cd intro-to-network-security-2026-fall
 bash harness/setup.sh            # apt: JDK 8 + JDK 21 + Java libs; clones pinned tool/bench commits into ext/
 bash harness/build.sh            # builds bench112.jar, custom.jar, CG-2019, CG-2020 into build/
