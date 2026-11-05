@@ -28,5 +28,5 @@ if [ ! -f findsecbugs-cli.zip ]; then
   curl -sSL -o findsecbugs-cli.zip "$FSB_URL"
 fi
 echo "$FSB_SHA256  findsecbugs-cli.zip" | sha256sum -c -
-rm -rf fsb && mkdir fsb && (cd fsb && unzip -q ../findsecbugs-cli.zip)
+rm -rf fsb && mkdir fsb && (cd fsb && unzip -o -q ../findsecbugs-cli.zip)
 echo "setup OK"

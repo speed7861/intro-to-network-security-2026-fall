@@ -49,7 +49,7 @@ d="$B/cg2020"; mkdir -p "$d/src" "$d/classes" "$d/libs"
 git -C "$ROOT/ext/cryptoguard" archive "$CG2020_COMMIT" src libs | tar -x -C "$d/src"
 cp "$d/src/libs/"*.jar "$d/libs/"
 # AXMLPrinter2.jar has a "/." zip entry that newer javac rejects -> repack (Android-only lib).
-( t=$(mktemp -d); cd "$t"; unzip -q "$d/libs/AXMLPrinter2.jar" 2>/dev/null || true
+( t=$(mktemp -d); cd "$t"; unzip -o -q "$d/libs/AXMLPrinter2.jar" 2>/dev/null || true
   rm "$d/libs/AXMLPrinter2.jar"; "$JDK21/bin/jar" cf "$d/libs/AXMLPrinter2.jar" .; rm -rf "$t" )
 CP20="$(ls "$d"/libs/*.jar | tr '\n' ':')$J/commons-cli.jar:$J/commons-lang3.jar:$J/commons-io.jar:$J/log4j-api.jar:$J/log4j-core.jar:$J/jackson-core.jar:$J/jackson-databind.jar:$J/jackson-annotations.jar:$J/jackson-dataformat-xml.jar:$J/jackson-dataformat-yaml.jar:$J/snakeyaml.jar:$J/stax2-api.jar:$J/groovy-all.jar"
 "$JDK21/bin/javac" -nowarn -encoding UTF-8 --release 17 -d "$d/classes" -cp "$CP20" $(find "$d/src/src/main/java" -name '*.java') 2>&1 | grep -v "Picked up" || true
