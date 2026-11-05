@@ -8,7 +8,7 @@ source "$ROOT/harness/pins.env"
 if command -v apt-get >/dev/null; then
   SUDO=""; [ "$(id -u)" -ne 0 ] && SUDO="sudo"
   $SUDO apt-get update -q
-  $SUDO DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
+  $SUDO env DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
     openjdk-8-jdk-headless openjdk-21-jdk-headless git curl unzip python3 \
     libcommons-cli-java libcommons-lang3-java libcommons-io-java liblog4j2-java \
     libjackson2-core-java libjackson2-databind-java libjackson2-annotations-java \
