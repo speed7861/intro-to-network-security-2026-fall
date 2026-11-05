@@ -1,62 +1,82 @@
-# Intro to Network Security — Fall 2026 (Rutgers ECE 424)
+# High-Precision Evaluation of Cryptographic API Misuses using CryptoGuard
 
-**Project:** High-precision evaluation of cryptographic API misuses using CryptoGuard
-**Team:** Abdelrahman Naser · Mark Tymoshenko · Daniel Mulraney
-**Paper:** Rahaman et al., *CryptoGuard: High Precision Detection of Cryptographic Vulnerabilities in Massive-sized Java Projects*, ACM CCS 2019 (arXiv:1806.06881)
+ECE 424 / ECE 539, Fall 2026, Rutgers University
+Abdelrahman Naser, Mark Tymoshenko, Daniel Mulraney
 
-> **Graders: start at [`CHECKPOINT.md`](CHECKPOINT.md)** — it maps each checkpoint requirement to a file in this repo.
+For the midpoint checkpoint, start with `CHECKPOINT.md`.
 
-## What this repo does
+We are testing the claims in Rahaman et al., "CryptoGuard: High Precision Detection of Cryptographic Vulnerabilities in Massive-sized Java Projects" (ACM CCS 2019, arXiv:1806.06881). We run CryptoGuard and SpotBugs/FindSecBugs on the CryptoAPI-Bench benchmark and on our own test files, and compare what we get with what the paper reports.
 
-A reproducible harness that runs three static analysers on the paper's **112-case CryptoAPI-Bench** and on our own test files, then scores them against case-level ground truth:
+## Tools and versions
 
-| Tool | Version | Role |
-|---|---|---|
-| CryptoGuard **CG-2019** | `ccs-submission` branch, commit `4097f921` (Jan 2019) | closest public code to the paper |
-| CryptoGuard **CG-2020** | latest release v04.05.03, commit `92551eeb` | current tool |
-| SpotBugs + FindSecBugs | FindSecBugs CLI 1.12.0 (SpotBugs 4.6.0) | linter baseline |
+| Tool | Version |
+|---|---|
+| CryptoGuard (paper era, "CG-2019") | `ccs-submission` branch, commit `4097f921`, January 2019 |
+| CryptoGuard (current, "CG-2020") | release v04.05.03, commit `92551eeb` |
+| SpotBugs + FindSecBugs | SpotBugs 4.6.0, FindSecBugs 1.12.0 |
+| CryptoAPI-Bench | commit `734aecb`, the 112-case version used in the paper |
 
-Baseline result (run `runs/20261104_baseline`, all 112 cases, case-level scoring):
+All versions are pinned in `harness/pins.env`.
 
-| | TP | FP | FN | Precision | Recall |
-|---|---|---|---|---|---|
-| Paper, CryptoGuard (Table 7) | 85 | 0 | 11 | 100% | 88.5% |
-| **Ours, CG-2019** | 77 | 0 | 19 | 100% | 80.2% |
-| **Ours, CG-2020** | 82 | 0 | 14 | 100% | 85.4% |
-| Paper, SpotBugs 3.0.1 (Table 7) | 26 | 11 | 70 | 70.3% | 27.1% |
-| **Ours, FindSecBugs 1.12.0** | 21 | 0 | 75 | 100% | 21.9% |
+## Running the baseline
 
-## Quick start (Ubuntu 22.04/24.04, ~10 min, no Maven Central or Gradle needed)
+You need Ubuntu 22.04 or 24.04. Setup installs everything else, and you don't need Maven Central or Gradle. The whole thing takes about 10 minutes.
 
 ```bash
 git clone https://github.com/speed7861/intro-to-network-security-2026-fall.git
 cd intro-to-network-security-2026-fall
-bash harness/setup.sh            # apt: JDK 8 + JDK 21 + Java libs; clones pinned tool/bench commits into ext/
-bash harness/build.sh            # builds bench112.jar, custom.jar, CG-2019, CG-2020 into build/
-bash harness/run_all.sh myrun    # runs 3 tools x (bench112 + custom tests), scores -> runs/myrun/
-bash harness/sanity.sh myrun     # sanity checks + single-case failure trace -> runs/myrun/sanity/
+bash harness/setup.sh          # installs JDK 8 + 21 and Java libraries, downloads the pinned tools and benchmark into ext/
+bash harness/build.sh          # builds the benchmark jar, the custom test jar and both CryptoGuard versions into build/
+bash harness/run_all.sh myrun  # runs the three tools on the benchmark and the custom tests, scores the results
+bash harness/sanity.sh myrun   # sanity checks and the single-case failure trace
 ```
 
-Then read `runs/myrun/<tool>/scored/summary.md` and `runs/myrun/sanity/SANITY.md`.
-Each tool run also writes a `*_manifest.txt` (exact command, versions, exit code, wall time, SHA-256 of input jar and raw output). Re-running on the same pins gives byte-identical issue sets (sanity check S5).
+Results go in `runs/myrun/`. For each tool, `scored/summary.md` has the precision and recall tables and `scored/per_case.csv` has one row per test case. Each run also writes a manifest with the exact command, versions, exit code, run time and file hashes.
 
-Run a single tool on any jar: `bash harness/run_tool.sh cg2020 path/to/app.jar runs/adhoc/`
+To run one tool on any jar:
 
-## Layout
-
-```
-harness/      setup.sh, build.sh, run_tool.sh, run_all.sh, sanity.sh, ground_truth.py, score.py, pins.env
-data/         ground_truth_bench112.csv  (112 cases: rule, category, label)
-custom_tests/ src/custom/...  + ground_truth_custom.csv   (our bounded contribution goes here)
-runs/         one folder per run: raw tool output, manifests, scored CSV/MD, SHA256SUMS
-docs/         protocol.md, contribution_plan.md, team_progress.md
-logs/LOG.md   dated lab notebook
+```bash
+bash harness/run_tool.sh cg2020 path/to/app.jar runs/adhoc/
 ```
 
-## Safety / scope
+### Running SpotBugs by hand on the custom tests
 
-Static analysis only, on public open-source benchmark code and our own toy files. No live systems, no network attacks. Tool binaries are fetched from upstream GitHub and verified by SHA-256.
+This is the quick check we started with, before the full harness existed. After `setup.sh`:
 
-## License note
+```bash
+export PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:$PATH   # SpotBugs and the tests need Java 8
+mkdir -p build/manual
+javac -encoding UTF-8 -d build/manual $(find custom_tests/src -name '*.java')
+bash ext/tools/fsb/findsecbugs.sh -html -output logs/spotbugs_manual.html build/manual
+```
 
-CryptoGuard is GPL-3.0 and is fetched at setup time, not vendored. CryptoAPI-Bench is fetched the same way.
+The full harness does the same thing but scores the output against ground truth.
+
+## Baseline results
+
+From `runs/20261104_baseline` (112 test cases, 96 vulnerable and 16 secure):
+
+| | Detected | False alarms | Missed | Precision | Recall |
+|---|---|---|---|---|---|
+| Paper, CryptoGuard | 85 | 0 | 11 | 100% | 88.5% |
+| Our run, CG-2019 | 77 | 0 | 19 | 100% | 80.2% |
+| Our run, CG-2020 | 82 | 0 | 14 | 100% | 85.4% |
+| Paper, SpotBugs 3.0.1 | 26 | 11 | 70 | 70.3% | 27.1% |
+| Our run, FindSecBugs 1.12.0 | 21 | 0 | 75 | 100% | 21.9% |
+
+## Repository layout
+
+```
+harness/       scripts: setup, build, run, score, sanity checks; pinned versions in pins.env
+data/          ground truth for the 112 benchmark cases
+custom_tests/  our own test files and their ground truth
+runs/          one folder per run: raw tool output, manifests, scored results, checksums
+docs/          protocol, contribution plan, team progress
+logs/LOG.md    lab notebook
+```
+
+## Notes
+
+This project only does static analysis of public benchmark code and our own small test files. Nothing is run against live systems.
+
+CryptoGuard is GPL-3.0 licensed. It is downloaded during setup and not stored in this repo. The same goes for CryptoAPI-Bench.
