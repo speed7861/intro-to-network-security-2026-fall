@@ -1,0 +1,22 @@
+Analyzing JAR: /root/work/repo/build/custom/custom.jar
+Warning: okhttp3.Request$Builder is a phantom class!
+Warning: retrofit2.Retrofit$Builder is a phantom class!
+=======================================
+***Violated Rule 3: Used constant keys in code ***Constants: [256]
+[UnitContainer{unit=virtualinvoke r1.<javax.crypto.KeyGenerator: void init(int)>(256), method='<custom.pilot.PilotSecureKey: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 3a: Used constant keys in code ***Constants: [1, 0]
+[UnitContainer{unit=r8 = specialinvoke r0.<javax.crypto.KeyGenerator: javax.crypto.KeyGeneratorSpi nextSpi(javax.crypto.KeyGeneratorSpi,boolean)>(r8, 1), method='<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>'}, UnitContainer{unit=$r5 = r0[0], method='<custom.pilot.PilotInfeasibleIteration: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 9a: Found constant salts in code ***Constants: [16]
+[UnitContainer{unit=r1 = newarray (byte)[16], method='<custom.pilot.PilotInfeasibleIteration: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 8: Used < 1000 iteration for PBE ***Constants: [0]
+[UnitContainer{unit=s1 = 0, method='<custom.pilot.PilotInfeasibleIteration: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 8a: Used < 1000 iteration for PBE ***Constants: [10000]
+=======================================

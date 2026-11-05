@@ -1,0 +1,5 @@
+2026-11-04 21:24:59,303 main ERROR Script support is not enabled
+2026-11-04 21:24:59,313 main ERROR No routes defined for RoutingAppender Sifter
+2026-11-04 21:24:59,316 main ERROR Null object returned for Routing in Appenders.
+2026-11-04 21:24:59,325 main ERROR Unable to locate appender "Sifter" for logger config "root"
+/root/work/repo/runs/20261104_baseline/custom_cg2020/cg2020_raw.json

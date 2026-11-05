@@ -1,0 +1,27 @@
+{
+  "projectName" : "CryptoGuard",
+  "ProjectVersion" : "04.05.03",
+  "Target" : {
+    "RawCommand" : "-in jar -s /root/work/repo/build/custom/custom.jar -java /usr/lib/jvm/java-8-openjdk-amd64 -m D -o /root/work/repo/runs/20261104_baseline/custom_cg2020/cg2020_raw.json -n",
+    "FullPath" : "custom.jar/",
+    "Type" : "JAR",
+    "TargetSources" : [ "/root/work/repo/build/custom/custom.jar" ],
+    "_PropertiesFilePath" : "gradle.properties",
+    "_ComputerOS" : "Linux_6.18.44-fc-v236",
+    "_JVMVersion" : "21.0.12.1+1-1-24.04.4-Ubuntu",
+    "_ProjectName" : "custom"
+  },
+  "Issues" : [ {
+    "Message" : "Found: \"0\"",
+    "Description" : "Used < 1000 iteration for PBE",
+    "RuleNumber" : 8,
+    "RuleDesc" : "Used < 1000 iteration for PBE",
+    "CWEId" : 326,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/custom/pilot/PilotInfeasibleIteration.class",
+    "_Id" : "0"
+  } ],
+  "_SchemaVersion" : 3,
+  "_DateTime" : "2026-11-04_21:24:59",
+  "_UUID" : "78d177bf-ecce-432b-b9b4-d718aa517696"
+}

@@ -1,0 +1,2 @@
+tool_rule,group,cls,case,paper_rules,on_target,detail
+8,main,custom.pilot.PilotInfeasibleIteration,PilotInfeasibleIteration,13,1,"Found: ""0"""

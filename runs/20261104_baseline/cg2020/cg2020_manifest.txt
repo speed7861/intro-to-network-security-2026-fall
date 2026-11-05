@@ -1,0 +1,11 @@
+tool=cg2020
+exit_code=0
+wall_seconds=7.85
+date_utc=2026-11-05T02:24:54Z
+host=Linux 6.18.44-fc-v236 x86_64
+target_jar=/root/work/repo/build/bench112/bench112.jar
+target_sha256=bf01c7ec208d12cbad5021fba9e0c36431b6bb3dde18a21cd7f0970d068d6dfb
+raw_output=cg2020_raw.json
+raw_sha256=7d3a0ebe15f530b9e053d96502ddd076e390a627b2ecafa6388076101e1dab0c
+cryptoguard_commit_cg2019=4097f921 cryptoguard_commit_cg2020=92551eeb bench112_commit=734aecb
+command=/usr/lib/jvm/java-21-openjdk-amd64/bin/java -Xmx4g -cp build/cg2020/classes:build/cg2020/libs/AXMLPrinter2.jar:build/cg2020/libs/axml-2.0.jar:build/cg2020/libs/dexlib2-2.4.0.jar:build/cg2020/libs/okhttp-3.9.0.jar:build/cg2020/libs/retrofit-2.1.0.jar:build/cg2020/libs/soot-V4.1.0-SNAPSHOT.jar:/usr/share/java/commons-cli.jar:/usr/share/java/commons-lang3.jar:/usr/share/java/commons-io.jar:/usr/share/java/log4j-api.jar:/usr/share/java/log4j-core.jar:/usr/share/java/jackson-core.jar:/usr/share/java/jackson-databind.jar:/usr/share/java/jackson-annotations.jar:/usr/share/java/jackson-dataformat-xml.jar:/usr/share/java/jackson-dataformat-yaml.jar:/usr/share/java/snakeyaml.jar:/usr/share/java/stax2-api.jar:/usr/share/java/groovy-all.jar frontEnd.Interface.EntryPoint -in jar -s build/bench112/bench112.jar -java /usr/lib/jvm/java-8-openjdk-amd64 -m D -o runs/20261104_baseline/cg2020/cg2020_raw.json -n

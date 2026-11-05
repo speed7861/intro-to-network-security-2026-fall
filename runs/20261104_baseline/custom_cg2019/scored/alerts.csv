@@ -1,0 +1,7 @@
+tool_rule,group,cls,case,paper_rules,on_target,detail
+3,main,custom.pilot.PilotSecureKey,PilotSecureKey,1;2,1,virtualinvoke r1.<javax.crypto.KeyGenerator: void init(int)>(256)
+3,refined_out,javax.crypto.KeyGenerator,,1;2,0,"r8 = specialinvoke r0.<javax.crypto.KeyGenerator: javax.crypto.KeyGeneratorSpi nextSpi(javax.crypto.KeyGeneratorSpi,bool"
+3,refined_out,custom.pilot.PilotInfeasibleIteration,PilotInfeasibleIteration,1;2,0,$r5 = r0[0]
+9,refined_out,custom.pilot.PilotInfeasibleIteration,PilotInfeasibleIteration,10,0,r1 = newarray (byte)[16]
+8,main,custom.pilot.PilotInfeasibleIteration,PilotInfeasibleIteration,13,1,s1 = 0
+8,refined_out,,,13,0,=======================================

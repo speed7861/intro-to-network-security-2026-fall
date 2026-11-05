@@ -1,0 +1,40 @@
+### case=BrokenHashBBCase2  jar_sha256=f09bb2c34541221e0ca2d1d2f9c7c4b6a3390b661b80bbb76bff82c7d49006e4
+### source:
+     1	package org.cryptoapi.bench.brokenhash;
+     2	
+     3	import java.security.MessageDigest;
+     4	import java.security.NoSuchAlgorithmException;
+     5	
+     6	public class BrokenHashBBCase2 {
+     7	    public static void main (String [] args) throws NoSuchAlgorithmException {
+     8	        String name = "abcdef";
+     9	        MessageDigest md = MessageDigest.getInstance("MD5");
+    10	        md.update(name.getBytes());
+    11	        System.out.println(md.digest());
+    12	    }
+    13	}
+### CG-2019 output:
+Analyzing JAR: /root/work/repo/runs/20261104_baseline/sanity/BrokenHashBBCase2.jar
+Warning: okhttp3.Request$Builder is a phantom class!
+Warning: retrofit2.Retrofit$Builder is a phantom class!
+=======================================
+***Violated Rule 2: Found broken hash functions ***Constants: ["MD5"]
+[UnitContainer{unit=$fakeLocal_9[0] = "MD5", method='<org.cryptoapi.bench.brokenhash.BrokenHashBBCase2: void main(java.lang.String[])>'}]
+=======================================
+### CG-2020 output (rule-engine log lines + JSON issues):
+2026-11-04 21:25:04,605 main ERROR Script support is not enabled
+2026-11-04 21:25:04,613 main ERROR No routes defined for RoutingAppender Sifter
+2026-11-04 21:25:04,615 main ERROR Null object returned for Routing in Appenders.
+2026-11-04 21:25:04,623 main ERROR Unable to locate appender "Sifter" for logger config "root"
+ISSUES: [
+ {
+  "Message": "Found: \"MD5\"",
+  "Description": "Found broken hash functions",
+  "RuleNumber": 2,
+  "RuleDesc": "Found broken hash functions",
+  "CWEId": 759,
+  "Severity": "1",
+  "_FullPath": "BrokenHashBBCase2.jar/org/cryptoapi/bench/brokenhash/BrokenHashBBCase2.class",
+  "_Id": "0"
+ }
+]

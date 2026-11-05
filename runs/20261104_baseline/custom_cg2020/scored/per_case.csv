@@ -1,0 +1,4 @@
+case,file,folder,paper_rule,category,label,shared_rule,detected,outcome,n_alerts,n_refined_out,detected_without_refinement
+PilotClippedHexKey,PilotClippedHexKey.java,pilot,1,pilot_fn_probe,1,1,0,FN,0,0,0
+PilotInfeasibleIteration,PilotInfeasibleIteration.java,pilot,13,pilot_fp_probe,0,0,1,FP,1,0,1
+PilotSecureKey,PilotSecureKey.java,pilot,1,pilot_negative,0,1,0,TN,0,0,0

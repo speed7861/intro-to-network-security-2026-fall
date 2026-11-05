@@ -1,0 +1,11 @@
+tool=cg2019
+exit_code=0
+wall_seconds=0.91
+date_utc=2026-11-05T02:24:58Z
+host=Linux 6.18.44-fc-v236 x86_64
+target_jar=/root/work/repo/build/custom/custom.jar
+target_sha256=6402f495493c88c68a7f40397029b6c1eb2c95690674ca0f47ae3eab44ae8134
+raw_output=cg2019_raw.txt
+raw_sha256=fd48c66d90f551b0b4b11af46b803e7881b6627da973991fd1827dd98f5a4902
+cryptoguard_commit_cg2019=4097f921 cryptoguard_commit_cg2020=92551eeb bench112_commit=734aecb
+command=/usr/lib/jvm/java-8-openjdk-amd64/bin/java -Xmx4g -cp build/cg2019/classes:build/cg2019/src/main/libs/soot-trunk.jar:build/cg2019/src/main/libs/dexlib2-2.2.1.jar:/usr/share/java/groovy-all.jar main.rule.engine.RuleEngine jar build/custom/custom.jar runs/20261104_baseline/custom_cg2019/.nodeps
