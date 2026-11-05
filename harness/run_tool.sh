@@ -12,19 +12,19 @@ case "$TOOL" in
   cg2019)
     RAW="$OUT/cg2019_raw.txt"; mkdir -p "$OUT/.nodeps"
     CMD=("$JDK8/bin/java" -Xmx4g -cp "$(cat "$B/cg2019/classpath.txt")" main.rule.engine.RuleEngine jar "$JAR" "$OUT/.nodeps")
-    "${CMD[@]}" > "$RAW" 2> "$OUT/cg2019_stderr.txt" || rc=$? ;;
+    "${CMD[@]}" > "$RAW" 2> >(grep -v "^Picked up JAVA_TOOL_OPTIONS" > "$OUT/cg2019_stderr.txt") || rc=$? ;;
   cg2020)
     RAW="$OUT/cg2020_raw.json"
     CMD=("$JDK21/bin/java" -Xmx4g -cp "$(cat "$B/cg2020/classpath.txt")" frontEnd.Interface.EntryPoint
          -in jar -s "$JAR" -java "$JDK8" -m D -o "$RAW" -n)
-    "${CMD[@]}" > "$OUT/cg2020_stdout.txt" 2> "$OUT/cg2020_stderr.txt" || rc=$? ;;
+    "${CMD[@]}" > "$OUT/cg2020_stdout.txt" 2> >(grep -v "^Picked up JAVA_TOOL_OPTIONS" > "$OUT/cg2020_stderr.txt") || rc=$? ;;
   fsb)
     RAW="$OUT/fsb_raw.xml"; FSB="$ROOT/ext/tools/fsb"
     LIBS=$(ls "$FSB"/lib/*.jar | tr '\n' ':')
     CMD=("$JDK8/bin/java" -cp "$LIBS" edu.umd.cs.findbugs.LaunchAppropriateUI -quiet
          -pluginList "$FSB/lib/findsecbugs-plugin-1.12.0.jar" -include "$FSB/include.xml"
          -xml:withMessages -output "$RAW" "$JAR")
-    "${CMD[@]}" > "$OUT/fsb_stdout.txt" 2> "$OUT/fsb_stderr.txt" || rc=$? ;;
+    "${CMD[@]}" > "$OUT/fsb_stdout.txt" 2> >(grep -v "^Picked up JAVA_TOOL_OPTIONS" > "$OUT/fsb_stderr.txt") || rc=$? ;;
   *) echo "unknown tool $TOOL"; exit 2 ;;
 esac
 end=$(date +%s.%N)
