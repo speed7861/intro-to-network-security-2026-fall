@@ -1,46 +1,28 @@
-# Team progress (as of November 5, 2026)
+# Team progress (final, November 23, 2026)
 
-Each of us commits our own work, so `git log --author="<name>"` shows who did what. The lists below describe each person's role, what they have done, and what they still need to add to the repo.
+Each of us commits our own work, so `git log --author="<name>"` shows who did what.
 
-## Abdelrahman Naser: custom test suite and SpotBugs setup
+## Abdelrahman Naser: custom test suite and SpotBugs evaluation
 
 Experiments: E3 (SpotBugs/FindSecBugs evaluation) and E4 (custom test suite).
 
-Done so far:
-- Set up SpotBugs with the FindSecBugs plugin on his own machine.
-- Wrote the first sample vulnerable Java file (`InsecureCryptoSample.java`, with a hard-coded key and MD5) and used it to check that SpotBugs scans bytecode and loads the plugin correctly.
-- The shared harness now runs FindSecBugs 1.12.0 on the full benchmark (`runs/20261104_baseline/fsb/`: 21 of 96 detected, no false alarms) and on everything in `custom_tests/src/`.
+- Set up SpotBugs with the FindSecBugs plugin on his own machine and confirmed bytecode scanning works.
+- Wrote the 15-file custom test suite (`custom_tests/*.java`, committed November 23): 13 misuse patterns (hard-coded key, MD5, SHA-1, ECB mode, AES defaulting to ECB, static IV, DES, `java.util.Random` for a key, fixed `SecureRandom` seed, 512-bit RSA, hard-coded keystore password, low PBE iteration count, and a key hidden behind `StringBuilder.reverse()`) and 2 secure versions (AES-GCM, SHA-256).
+- Ran SpotBugs with FindSecBugs on the suite and committed the report (`custom_tests/spotbugs_custom_report.txt` and `.html`). The harness's own FindSecBugs run agrees with his report on every file.
+- His `SmallRSAKeyTest10` exposed a bug in CryptoGuard that the benchmark never triggers (see `docs/results.md`, section 4).
 
-Still to commit:
-- `InsecureCryptoSample.java` and the output of his first SpotBugs run (moved into `custom_tests/` and `logs/`).
-- The remaining 12 custom test files listed in `docs/contribution_plan.md`, with a row for each in `custom_tests/ground_truth_custom.csv`.
+## Mark Tymoshenko: CryptoGuard setup, refinement ablation and root-cause analysis
 
-## Mark Tymoshenko: CryptoGuard setup and refinement analysis
+Experiments: E1 (CryptoGuard on the benchmark and the custom tests), E2 (refinement ablation) and E6 (root-cause probes).
 
-Experiments: E1 (CryptoGuard on the benchmark and custom files) and E2 (refinement ablation).
+- Got both CryptoGuard versions building without Gradle or Maven Central, and found the paper-era CryptoGuard commit and the 112-case benchmark commit in their git histories.
+- Wrote the harness (`setup.sh`, `build.sh`, `run_tool.sh`, `run_all.sh`, `sanity.sh`, `probes.sh`, `ground_truth.py`, `score.py`, `patch_norefine.py`).
+- Ran the benchmark baseline (November 4) and the final run (November 23), both with sanity checks.
+- Wrote the 3 pilot test files and added labels for Abdul's 15 files so the harness scores them.
+- Built a version of the paper-era CryptoGuard with a switch that turns refinement off, checked that it matches the original when the switch is off, and ran the ablation.
+- Traced the misses to their causes with the probe files in `probes/`: `Arrays.copyOf` in CG-2019, local string variables in CG-2020, and the array-parameter bug in rule 15.
+- Wrote `docs/results.md`.
 
-Done so far:
-- Got both CryptoGuard versions building without Gradle or Maven Central (`harness/build.sh`). Found the paper-era CryptoGuard commit (`ccs-submission`, `4097f921`) and the 112-case benchmark commit (`734aecb`) in their git histories.
-- Wrote the harness: `setup.sh`, `build.sh`, `run_tool.sh`, `run_all.sh`, `sanity.sh`, `ground_truth.py` and `score.py`.
-- Ran the baseline (`runs/20261104_baseline/`). CG-2019 detected 77 of 96 and CG-2020 detected 82 of 96, both with no false alarms. CG-2019 matches the paper's Table 7 exactly on 13 of the 16 rules.
-- Ran sanity checks S1 to S6 and recorded the single-case failure trace.
-- First pass at the ablation: refinement removed 67 of 160 alerts (42 percent) on the benchmark.
-- Found two tool bugs. CG-2020 reports the location of its TrustManager and HostnameVerifier alerts as `UNKNOWN`, and CG-2019 flags `KeyGenerator.init(256)` as a hard-coded key.
-- Wrote the three pilot test files.
+## Daniel Mulraney
 
-Next:
-- Build a version of CryptoGuard with the refinement checks turned off, for the full ablation.
-- Dump the backward slice for the missed hard-coded key case to find where the constant is dropped.
-
-## Daniel Mulraney: threat model and discrepancy framework
-
-Experiment: E5 (threat model mapping and discrepancy analysis).
-
-Done so far:
-- Drafted the schema for the evaluation table.
-- Mapped the target JCA vulnerability categories to CWEs (CWE-327 broken or risky crypto algorithm, CWE-321 hard-coded cryptographic key) for tracking discrepancies.
-- The inputs for his matrix are ready. Every run writes `scored/alerts.csv` (each alert with its tool rule, the matching paper rule, class and test case) and `scored/per_case.csv` for all three tools.
-
-Still to commit:
-- `docs/initial_discrepancy_schema.md` with the table schema and the CWE mapping.
-- A first list of cases where CryptoGuard and SpotBugs disagree, built from the baseline run.
+Daniel left the course partway through the semester. Before leaving he drafted the evaluation table schema and the CWE mapping (CWE-327, CWE-321) described in the midpoint write-up. That work was never committed to the repo, and the discrepancy matrix he was going to build (experiment E5) was dropped. `docs/results.md` still compares CryptoGuard and FindSecBugs file by file on the custom suite, but not as a full CWE matrix.

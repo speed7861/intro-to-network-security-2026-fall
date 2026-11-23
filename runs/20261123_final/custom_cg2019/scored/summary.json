@@ -1,0 +1,268 @@
+{
+  "tool": "cg2019",
+  "raw": "/root/work/final/runs/20261123_final/custom_cg2019/cg2019_raw.txt",
+  "overall": {
+    "n": 18,
+    "GTP": 14,
+    "TP": 12,
+    "FP": 2,
+    "FN": 2,
+    "TN": 2,
+    "precision": 0.8571428571428571,
+    "recall": 0.8571428571428571
+  },
+  "by_category": {
+    "pilot_fn_probe": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 0,
+      "FP": 0,
+      "FN": 1,
+      "TN": 0,
+      "precision": null,
+      "recall": 0.0
+    },
+    "pilot_fp_probe": {
+      "n": 1,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 1,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.0,
+      "recall": null
+    },
+    "pilot_negative": {
+      "n": 1,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 1,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.0,
+      "recall": null
+    },
+    "suite_misuse": {
+      "n": 13,
+      "GTP": 13,
+      "TP": 12,
+      "FP": 0,
+      "FN": 1,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 0.9230769230769231
+    },
+    "suite_secure": {
+      "n": 2,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 2,
+      "precision": null,
+      "recall": null
+    }
+  },
+  "by_rule": {
+    "1": {
+      "n": 5,
+      "GTP": 3,
+      "TP": 2,
+      "FP": 1,
+      "FN": 1,
+      "TN": 1,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666
+    },
+    "2": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "3": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "4": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "5": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "6": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "7": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "8": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "9": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "10": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "11": {
+      "n": 2,
+      "GTP": 2,
+      "TP": 2,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "12": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "13": {
+      "n": 2,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 1,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.5,
+      "recall": 1.0
+    },
+    "14": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "15": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 0,
+      "FP": 0,
+      "FN": 1,
+      "TN": 0,
+      "precision": null,
+      "recall": 0.0
+    },
+    "16": {
+      "n": 3,
+      "GTP": 2,
+      "TP": 2,
+      "FP": 0,
+      "FN": 0,
+      "TN": 1,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "table3_shared_rules": {
+    "basic": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "advanced": {
+      "n": 12,
+      "GTP": 9,
+      "TP": 8,
+      "FP": 1,
+      "FN": 1,
+      "TN": 2,
+      "precision": 0.8888888888888888,
+      "recall": 0.8888888888888888
+    }
+  },
+  "alerts_total": 71,
+  "alerts_on_target": 29,
+  "alerts_unattributed": 5,
+  "ablation_partial": {
+    "alerts_kept": 37,
+    "alerts_refined_out": 34,
+    "reduction": 0.4788732394366197,
+    "case_level_without_refinement": {
+      "n": 18,
+      "GTP": 14,
+      "TP": 12,
+      "FP": 2,
+      "FN": 2,
+      "TN": 2,
+      "precision": 0.8571428571428571,
+      "recall": 0.8571428571428571
+    }
+  }
+}

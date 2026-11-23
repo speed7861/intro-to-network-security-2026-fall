@@ -34,7 +34,7 @@ PAPER_T7 = {1: (5, 5, 0, 2, 0), 2: (6, 6, 0, 3, 0), 3: (5, 5, 0, 2, 0), 4: (1, 1
 BENCH_CLASS = re.compile(r"(org\.cryptoapi\.bench\.[A-Za-z0-9_.$]+|custom\.[A-Za-z0-9_.$]+)")
 
 
-def parse_cg2019(path):
+def parse_cg2019(path, known=()):
     """Text report: blocks between '====' lines. 'Rule Na' blocks hold the constants that the
     refinement insights moved to the 'other sources' bucket (= alerts removed by refinement)."""
     alerts, text = [], Path(path).read_text(errors="replace")
@@ -48,7 +48,9 @@ def parse_cg2019(path):
             for unit, cls in entries:
                 alerts.append(dict(tool_rule=rule, group=group, cls=cls, detail=unit[:120]))
         else:
-            classes = sorted({c.rstrip(".:") for c in BENCH_CLASS.findall(block)})
+            classes = {c.rstrip(".:") for c in BENCH_CLASS.findall(block)}
+            classes |= {k for k in known if "." not in k and re.search(r"(?<![\w.$])" + re.escape(k) + r"(?![\w$])", block)}
+            classes = sorted(classes)
             for c in classes or [None]:
                 alerts.append(dict(tool_rule=rule, group=group, cls=c,
                                    detail=block.strip().splitlines()[0][:120]))
@@ -100,12 +102,20 @@ def main(tool, raw, gt_csv, cmap_tsv, out_dir):
     for line in open(cmap_tsv):
         cls, src = line.rstrip("\n").split("\t")
         cls2case[cls] = src[:-5]
-    alerts = {"cg2019": parse_cg2019, "cg2020": parse_cg2020, "fsb": parse_fsb}[tool](raw)
+    if tool.startswith("cg2019"):
+        alerts = parse_cg2019(raw, known=tuple(cls2case))
+    else:
+        alerts = {"cg2020": parse_cg2020, "fsb": parse_fsb}[tool](raw)
 
-    case_rule = {g["case"]: g["paper_rule"] for g in gt}
+    # A case targets its paper_rule; custom secure files may list extra rules (extra_rules="11;12")
+    # so that any alert for those rules also counts as a false alarm on that file.
+    case_rules = {}
+    for g in gt:
+        extra = {int(x) for x in (g.get("extra_rules") or "").split(";") if x.strip()}
+        case_rules[g["case"]] = {g["paper_rule"]} | extra
     for a in alerts:
         a["case"] = cls2case.get(a["cls"]) if a["cls"] else None
-        a["on_target"] = int(a["case"] is not None and case_rule.get(a["case"]) in a["paper_rules"])
+        a["on_target"] = int(a["case"] is not None and bool(case_rules.get(a["case"], set()) & a["paper_rules"]))
 
     hit = collections.defaultdict(lambda: {"main": 0, "refined_out": 0})
     for a in alerts:
@@ -129,7 +139,7 @@ def main(tool, raw, gt_csv, cmap_tsv, out_dir):
 
     S = {"tool": tool, "raw": str(raw), "overall": agg(rows),
          "by_category": {c: agg([r for r in rows if r["category"] == c])
-                         for c in ["basic", "correct", "interprocedural", "field_sensitive", "fp_test"]},
+                         for c in dict.fromkeys(r["category"] for r in rows)},
          "by_rule": {str(k): agg([r for r in rows if r["paper_rule"] == k]) for k in range(1, 17)},
          "table3_shared_rules": {
              "basic": agg([r for r in rows if r["shared_rule"] == "1" and r["category"] in ("basic", "correct")]),
@@ -138,7 +148,7 @@ def main(tool, raw, gt_csv, cmap_tsv, out_dir):
          "alerts_on_target": sum(a["on_target"] for a in alerts if a["group"] == "main"),
          "alerts_unattributed": sum(1 for a in alerts if a["case"] is None),
          }
-    if tool == "cg2019":
+    if tool.startswith("cg2019"):
         main_n = sum(1 for a in alerts if a["group"] == "main")
         ref_n = sum(1 for a in alerts if a["group"] == "refined_out")
         S["ablation_partial"] = {

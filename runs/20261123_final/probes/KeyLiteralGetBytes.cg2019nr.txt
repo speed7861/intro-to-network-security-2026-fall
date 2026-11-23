@@ -1,0 +1,7 @@
+Analyzing JAR: /root/work/final/runs/20261123_final/probes/KeyLiteralGetBytes.jar
+Warning: okhttp3.Request$Builder is a phantom class!
+Warning: retrofit2.Retrofit$Builder is a phantom class!
+=======================================
+***Violated Rule 3: Used constant keys in code ***Constants: ["defaultkey", 0]
+[UnitContainer{unit=$r3 = "defaultkey", method='<KeyLiteralGetBytes: void main(java.lang.String[])>'}, UnitContainer{unit=$r3 = staticinvoke <java.lang.StringCoding: byte[] encode(char[],int,int)>($r2, 0, $i0), method='<java.lang.String: byte[] getBytes()>'}]
+=======================================

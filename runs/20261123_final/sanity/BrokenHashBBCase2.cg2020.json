@@ -1,0 +1,27 @@
+{
+  "projectName" : "CryptoGuard",
+  "ProjectVersion" : "04.05.03",
+  "Target" : {
+    "RawCommand" : "-in jar -s /root/work/final/runs/20261123_final/sanity/BrokenHashBBCase2.jar -java /usr/lib/jvm/java-8-openjdk-amd64 -m D -o /root/work/final/runs/20261123_final/sanity/BrokenHashBBCase2.cg2020.json -n",
+    "FullPath" : "BrokenHashBBCase2.jar/",
+    "Type" : "JAR",
+    "TargetSources" : [ "/root/work/final/runs/20261123_final/sanity/BrokenHashBBCase2.jar" ],
+    "_PropertiesFilePath" : "gradle.properties",
+    "_ComputerOS" : "Linux_6.18.44-fc-v726",
+    "_JVMVersion" : "21.0.12.1+1-1-24.04.4-Ubuntu",
+    "_ProjectName" : "BrokenHashBBCase2"
+  },
+  "Issues" : [ {
+    "Message" : "Found: \"MD5\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "BrokenHashBBCase2.jar/org/cryptoapi/bench/brokenhash/BrokenHashBBCase2.class",
+    "_Id" : "0"
+  } ],
+  "_SchemaVersion" : 3,
+  "_DateTime" : "2026-11-23_11:08:21",
+  "_UUID" : "5d505c2c-643e-469c-8666-86489f49eeb1"
+}

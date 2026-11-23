@@ -1,0 +1,11 @@
+tool=cg2020
+exit_code=0
+wall_seconds=3.36
+date_utc=2026-11-23T16:08:15Z
+host=Linux 6.18.44-fc-v726 x86_64
+target_jar=/root/work/final/build/custom/custom.jar
+target_sha256=31f4b46ab414a13c77da8301917b8cbd7480d52eb034ac834e23d9d6bd80f90f
+raw_output=cg2020_raw.json
+raw_sha256=643531c9d7c85cfd2630b515adaf6455d85320489f1e7fea03da23f64f696965
+cryptoguard_commit_cg2019=4097f921 cryptoguard_commit_cg2020=92551eeb bench112_commit=734aecb
+command=/usr/lib/jvm/java-21-openjdk-amd64/bin/java -Xmx4g -cp build/cg2020/classes:build/cg2020/libs/AXMLPrinter2.jar:build/cg2020/libs/axml-2.0.jar:build/cg2020/libs/dexlib2-2.4.0.jar:build/cg2020/libs/okhttp-3.9.0.jar:build/cg2020/libs/retrofit-2.1.0.jar:build/cg2020/libs/soot-V4.1.0-SNAPSHOT.jar:/usr/share/java/commons-cli.jar:/usr/share/java/commons-lang3.jar:/usr/share/java/commons-io.jar:/usr/share/java/log4j-api.jar:/usr/share/java/log4j-core.jar:/usr/share/java/jackson-core.jar:/usr/share/java/jackson-databind.jar:/usr/share/java/jackson-annotations.jar:/usr/share/java/jackson-dataformat-xml.jar:/usr/share/java/jackson-dataformat-yaml.jar:/usr/share/java/snakeyaml.jar:/usr/share/java/stax2-api.jar:/usr/share/java/groovy-all.jar frontEnd.Interface.EntryPoint -in jar -s build/custom/custom.jar -java /usr/lib/jvm/java-8-openjdk-amd64 -m D -o runs/20261123_final/custom_cg2020/cg2020_raw.json -n

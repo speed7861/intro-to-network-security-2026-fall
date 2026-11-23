@@ -1,0 +1,18 @@
+{
+  "projectName" : "CryptoGuard",
+  "ProjectVersion" : "04.05.03",
+  "Target" : {
+    "RawCommand" : "-in jar -s /root/work/final/runs/20261123_final/probes/RsaInHelperWithArrayParam512.jar -java /usr/lib/jvm/java-8-openjdk-amd64 -m D -o /root/work/final/runs/20261123_final/probes/RsaInHelperWithArrayParam512.cg2020.json -n",
+    "FullPath" : "RsaInHelperWithArrayParam512.jar/",
+    "Type" : "JAR",
+    "TargetSources" : [ "/root/work/final/runs/20261123_final/probes/RsaInHelperWithArrayParam512.jar" ],
+    "_PropertiesFilePath" : "gradle.properties",
+    "_ComputerOS" : "Linux_6.18.44-fc-v726",
+    "_JVMVersion" : "21.0.12.1+1-1-24.04.4-Ubuntu",
+    "_ProjectName" : "RsaInHelperWithArrayParam512"
+  },
+  "Issues" : [ ],
+  "_SchemaVersion" : 3,
+  "_DateTime" : "2026-11-23_11:12:54",
+  "_UUID" : "39037159-a65a-4d3c-b605-459391e14925"
+}

@@ -24,13 +24,14 @@ build_bench "$BENCH112_COMMIT" bench112
 
 # ---------- custom tests (team contribution; may be empty early on) ----------
 mkdir -p "$B/custom/classes"
-if [ -d "$ROOT/custom_tests/src" ] && find "$ROOT/custom_tests/src" -name '*.java' | grep -q .; then
-  "$JDK8/bin/javac" -nowarn -g -encoding UTF-8 -d "$B/custom/classes" $(find "$ROOT/custom_tests/src" -name '*.java') 2>&1 | grep -v "Picked up" || true
+# Picks up every .java file under custom_tests/ (pilot files in src/custom/pilot, the suite files at the top level).
+if [ -d "$ROOT/custom_tests" ] && find "$ROOT/custom_tests" -name '*.java' | grep -q .; then
+  "$JDK8/bin/javac" -nowarn -g -encoding UTF-8 -d "$B/custom/classes" $(find "$ROOT/custom_tests" -name '*.java') 2>&1 | grep -v "Picked up" || true
   (cd "$B/custom/classes" && "$JDK8/bin/jar" cf ../custom.jar .)
   find "$B/custom/classes" -name '*.class' | sort | xargs "$JDK8/bin/javap" -v 2>/dev/null \
     | awk '/^Classfile /{c=$2} /^SourceFile: /{gsub(/"/,"",$2); print c"\t"$2}' \
     | sed "s#$B/custom/classes/##; s#\.class\t#\t#; s#/#.#g" > "$B/custom/class_to_source.tsv"
-  log "custom: $(find "$ROOT/custom_tests/src" -name '*.java' | wc -l) java files"
+  log "custom: $(find "$ROOT/custom_tests" -name '*.java' | wc -l) java files"
 fi
 
 # ---------- CryptoGuard CG-2019 (ccs-submission branch), Java 8 ----------
@@ -40,6 +41,17 @@ CP19="$d/src/main/libs/soot-trunk.jar:$d/src/main/libs/dexlib2-2.2.1.jar:$J/groo
 "$JDK8/bin/javac" -nowarn -encoding UTF-8 -d "$d/classes" -cp "$CP19" $(find "$d/src/main/src" -name '*.java') 2>&1 | grep -v "Picked up" || true
 echo "$d/classes:$CP19" > "$d/classpath.txt"
 log "cg2019: $(find "$d/classes" -name '*.class' | wc -l) classes"
+
+# ---------- CG-2019 with a refinement switch (for the ablation, experiment E2) ----------
+# Same source with harness/patch_norefine.py applied. Behaves like CG-2019 unless run with
+# -Dcg.norefine=true (sanity check S7 confirms this).
+d="$B/cg2019nr"; mkdir -p "$d/src" "$d/classes"
+git -C "$ROOT/ext/cryptoguard" archive "$CG2019_COMMIT" main | tar -x -C "$d/src"
+python3 "$ROOT/harness/patch_norefine.py" "$d/src" >/dev/null
+CP19NR="$d/src/main/libs/soot-trunk.jar:$d/src/main/libs/dexlib2-2.2.1.jar:$J/groovy-all.jar"
+"$JDK8/bin/javac" -nowarn -encoding UTF-8 -d "$d/classes" -cp "$CP19NR" $(find "$d/src/main/src" -name '*.java') 2>&1 | grep -v "Picked up" || true
+echo "$d/classes:$CP19NR" > "$d/classpath.txt"
+log "cg2019nr: $(find "$d/classes" -name '*.class' | wc -l) classes (refinement switch patched in)"
 
 # ---------- CryptoGuard CG-2020 (v04.05.03) ----------
 # Maven Central/Gradle 6 are not required: deps come from the Ubuntu Java packages

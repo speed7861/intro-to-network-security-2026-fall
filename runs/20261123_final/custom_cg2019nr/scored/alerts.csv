@@ -1,0 +1,48 @@
+tool_rule,group,cls,case,paper_rules,on_target,detail
+1,main,ECBModeTest4,ECBModeTest4,11;14,1,"$fakeLocal_9[0] = ""AES/ECB/PKCS5Padding"""
+1,main,DefaultAESECBTest5,DefaultAESECBTest5,11;14,1,"$fakeLocal_9[0] = ""AES"""
+1,main,WeakCipherDESTest7,WeakCipherDESTest7,11;14,1,"$fakeLocal_9[0] = ""DES/CBC/PKCS5Padding"""
+1,refined_out,,,11;14,0,=======================================
+13,main,InsecureRandomTest8,InsecureRandomTest8,9,1,=============================================
+2,main,WeakHashMD5Test2,WeakHashMD5Test2,16,1,"$fakeLocal_5[0] = ""MD5"""
+2,main,WeakHashSHA1Test3,WeakHashSHA1Test3,16,1,"$fakeLocal_5[0] = ""SHA-1"""
+2,refined_out,,,16,0,=======================================
+3,main,ObfuscatedKeySliceTest13,ObfuscatedKeySliceTest13,1;2,1,"specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>(""6543210987654321"")"
+3,main,custom.pilot.PilotSecureKey,PilotSecureKey,1;2,1,virtualinvoke r1.<javax.crypto.KeyGenerator: void init(int)>(256)
+3,main,javax.crypto.KeyGenerator,,1;2,0,"r8 = specialinvoke r0.<javax.crypto.KeyGenerator: javax.crypto.KeyGeneratorSpi nextSpi(javax.crypto.KeyGeneratorSpi,bool"
+3,main,HardcodedKeyTest1,HardcodedKeyTest1,1;2,1,"$r4 = ""1234567890123456"""
+3,main,custom.pilot.PilotInfeasibleIteration,PilotInfeasibleIteration,1;2,0,$r5 = r0[0]
+3,main,InsecureRandomTest8,InsecureRandomTest8,1;2,0,r2 = newarray (byte)[16]
+3,main,java.lang.String,,1;2,0,"$r3 = staticinvoke <java.lang.StringCoding: byte[] encode(char[],int,int)>($r2, 0, $i0)"
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[4] = 4
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[7] = 7
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[1] = 1
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[2] = 2
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[14] = 14
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[8] = 8
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[10] = 10
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[5] = 5
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[13] = 13
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[3] = 3
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[0] = 0
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6 = newarray (byte)[16]
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[15] = 15
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[11] = 11
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[6] = 6
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[9] = 9
+10,main,StaticIVTest6,StaticIVTest6,12,1,$r6[12] = 12
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3[2] = 3
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3[3] = 4
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3[6] = 7
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3[0] = 1
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3[7] = 8
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3[1] = 2
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3[4] = 5
+9,main,custom.pilot.PilotInfeasibleIteration,PilotInfeasibleIteration,10,0,r1 = newarray (byte)[16]
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3[5] = 6
+9,main,LowIterationPBETest12,LowIterationPBETest12,10,0,$r3 = newarray (byte)[8]
+8,main,custom.pilot.PilotInfeasibleIteration,PilotInfeasibleIteration,13,1,s1 = 0
+8,main,LowIterationPBETest12,LowIterationPBETest12,13,1,$fakeLocal_6[1] = 100
+8,refined_out,,,13,0,=======================================
+11,main,StaticSeedSecureRandomTest9,StaticSeedSecureRandomTest9,8,1,$fakeLocal_6[0] = 12345L
+14,main,HardcodedKeyStorePassTest11,HardcodedKeyStorePassTest11,3,1,"$r4 = ""changeit123"""

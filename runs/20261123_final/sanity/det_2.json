@@ -1,0 +1,801 @@
+{
+  "projectName" : "CryptoGuard",
+  "ProjectVersion" : "04.05.03",
+  "Target" : {
+    "RawCommand" : "-in jar -s /root/work/final/build/bench112/bench112.jar -java /usr/lib/jvm/java-8-openjdk-amd64 -m D -o /root/work/final/runs/20261123_final/sanity/det_2.json -n",
+    "FullPath" : "bench112.jar/",
+    "Type" : "JAR",
+    "TargetSources" : [ "/root/work/final/build/bench112/bench112.jar" ],
+    "_PropertiesFilePath" : "gradle.properties",
+    "_ComputerOS" : "Linux_6.18.44-fc-v726",
+    "_JVMVersion" : "21.0.12.1+1-1-24.04.4-Ubuntu",
+    "_ProjectName" : "bench112"
+  },
+  "Issues" : [ {
+    "Message" : "Cause: Used default key size",
+    "Description" : "Used export grade public Key",
+    "RuleNumber" : 5,
+    "RuleDesc" : "Used export grade public Key",
+    "CWEId" : 321,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/insecureasymmetriccrypto/InsecureAsymmetricCipherABICase1.class",
+    "_Id" : "0"
+  }, {
+    "Message" : "Found: \"1024\"",
+    "Description" : "Used export grade public Key",
+    "RuleNumber" : 5,
+    "RuleDesc" : "Used export grade public Key",
+    "CWEId" : 321,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/insecureasymmetriccrypto/InsecureAsymmetricCipherBBCase1.class",
+    "_Id" : "1"
+  }, {
+    "Message" : "Found: \"IDEA\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase9.class",
+    "_Id" : "2"
+  }, {
+    "Message" : "Found: \"RC2\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABSCase4.class",
+    "_Id" : "3"
+  }, {
+    "Message" : "Found: \"RC2\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase4.class",
+    "_Id" : "4"
+  }, {
+    "Message" : "Found: \"Blowfish\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoBBCase2.class",
+    "_Id" : "5"
+  }, {
+    "Message" : "Found: \"RC4\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase7.class",
+    "_Id" : "6"
+  }, {
+    "Message" : "Found: \"RC2\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase8.class",
+    "_Id" : "7"
+  }, {
+    "Message" : "Found: \"IDEA\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoBBCase5.class",
+    "_Id" : "8"
+  }, {
+    "Message" : "Found: \"AES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/ecbcrypto/EcbInSymmCryptoBBCase1.class",
+    "_Id" : "9"
+  }, {
+    "Message" : "Found: \"RC4\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase3.class",
+    "_Id" : "10"
+  }, {
+    "Message" : "Found: \"Blowfish\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABSCase2.class",
+    "_Id" : "11"
+  }, {
+    "Message" : "Found: \"AES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/ecbcrypto/EcbInSymmCryptoABSCase1.class",
+    "_Id" : "12"
+  }, {
+    "Message" : "Found: \"AES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/ecbcrypto/EcbInSymmCryptoABICase2.class",
+    "_Id" : "13"
+  }, {
+    "Message" : "Found: \"DES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoBBCase1.class",
+    "_Id" : "14"
+  }, {
+    "Message" : "Found: \"IDEA\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABSCase5.class",
+    "_Id" : "15"
+  }, {
+    "Message" : "Found: \"DES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABSCase1.class",
+    "_Id" : "16"
+  }, {
+    "Message" : "Found: \"DES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase5.class",
+    "_Id" : "17"
+  }, {
+    "Message" : "Found: \"AES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/ecbcrypto/EcbInSymmCryptoABICase1.class",
+    "_Id" : "18"
+  }, {
+    "Message" : "Found: \"Blowfish\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase6.class",
+    "_Id" : "19"
+  }, {
+    "Message" : "Found: \"RC4\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoBBCase3.class",
+    "_Id" : "20"
+  }, {
+    "Message" : "Found: \"Blowfish\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase2.class",
+    "_Id" : "21"
+  }, {
+    "Message" : "Found: \"DES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase1.class",
+    "_Id" : "22"
+  }, {
+    "Message" : "Found: \"IDEA\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABICase10.class",
+    "_Id" : "23"
+  }, {
+    "Message" : "Found: \"RC2\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoBBCase4.class",
+    "_Id" : "24"
+  }, {
+    "Message" : "Found: \"RC4\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokencrypto/BrokenCryptoABSCase3.class",
+    "_Id" : "25"
+  }, {
+    "Message" : "Found: Untrused PRNG (java.util.Random)",
+    "Description" : "Used untrusted PRNG",
+    "RuleNumber" : 13,
+    "RuleDesc" : "Used untrusted PRNG",
+    "CWEId" : 338,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/untrustedprng/UntrustedPRNGCase1.class",
+    "_Id" : "26"
+  }, {
+    "Message" : "Didn't manually verify hostname in encrypt",
+    "Description" : "Should check HostnameVerification manually",
+    "RuleNumber" : 12,
+    "RuleDesc" : "Should check HostnameVerification manually",
+    "CWEId" : 297,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/impropersslsocketfactory/CryptoImproperSocketManualHostname1.class",
+    "_Id" : "27"
+  }, {
+    "Message" : "Didn't manually verify hostname in go",
+    "Description" : "Should check HostnameVerification manually",
+    "RuleNumber" : 12,
+    "RuleDesc" : "Should check HostnameVerification manually",
+    "CWEId" : 297,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/impropersslsocketfactory/ImproperSocketManualHostABICase2.class",
+    "_Id" : "28"
+  }, {
+    "Message" : "Didn't manually verify hostname in main",
+    "Description" : "Should check HostnameVerification manually",
+    "RuleNumber" : 12,
+    "RuleDesc" : "Should check HostnameVerification manually",
+    "CWEId" : 297,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/impropersslsocketfactory/ImproperSocketManualHostBBCase1.class",
+    "_Id" : "29"
+  }, {
+    "Message" : "Didn't manually verify hostname in go",
+    "Description" : "Should check HostnameVerification manually",
+    "RuleNumber" : 12,
+    "RuleDesc" : "Should check HostnameVerification manually",
+    "CWEId" : 297,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/impropersslsocketfactory/ImproperSocketManualHostABICase1.class",
+    "_Id" : "30"
+  }, {
+    "Message" : "Should at least get One accepted Issuer from Other Sources in getAcceptedIssuers method of UNKNOWN",
+    "Description" : "Uses untrusted TrustManager",
+    "RuleNumber" : 4,
+    "RuleDesc" : "Uses untrusted TrustManager",
+    "CWEId" : 349,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/UNKNOWN.class",
+    "_Id" : "31"
+  }, {
+    "Message" : "Cause: Fixed \"[1]\"",
+    "Description" : "Used untrusted HostNameVerifier",
+    "RuleNumber" : 6,
+    "RuleDesc" : "Used untrusted HostNameVerifier",
+    "CWEId" : 601,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/UNKNOWN.class",
+    "_Id" : "32"
+  }, {
+    "Message" : "Found: \"MD4\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashBBCase3.class",
+    "_Id" : "33"
+  }, {
+    "Message" : "Found: \"MD5\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABICase6.class",
+    "_Id" : "34"
+  }, {
+    "Message" : "Found: \"MD4\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABICase7.class",
+    "_Id" : "35"
+  }, {
+    "Message" : "Found: \"MD2\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABSCase4.class",
+    "_Id" : "36"
+  }, {
+    "Message" : "Found: \"MD4\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABICase3.class",
+    "_Id" : "37"
+  }, {
+    "Message" : "Found: \"MD2\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABICase8.class",
+    "_Id" : "38"
+  }, {
+    "Message" : "Found: \"MD2\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABICase4.class",
+    "_Id" : "39"
+  }, {
+    "Message" : "Found: \"MD5\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABICase2.class",
+    "_Id" : "40"
+  }, {
+    "Message" : "Found: \"SHA1\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABSCase1.class",
+    "_Id" : "41"
+  }, {
+    "Message" : "Found: \"MD5\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABSCase2.class",
+    "_Id" : "42"
+  }, {
+    "Message" : "Found: \"MD2\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashBBCase4.class",
+    "_Id" : "43"
+  }, {
+    "Message" : "Found: \"MD5\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashBBCase2.class",
+    "_Id" : "44"
+  }, {
+    "Message" : "Found: \"SHA1\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashBBCase1.class",
+    "_Id" : "45"
+  }, {
+    "Message" : "Found: \"MD4\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABSCase3.class",
+    "_Id" : "46"
+  }, {
+    "Message" : "Found: \"SHA1\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABICase5.class",
+    "_Id" : "47"
+  }, {
+    "Message" : "Found: \"SHA1\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/brokenhash/BrokenHashABICase1.class",
+    "_Id" : "48"
+  }, {
+    "Message" : "Found: Constant \"defaultkey\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablecryptographickey/PredictableCryptographicKeyABSCase1.class",
+    "_Id" : "49"
+  }, {
+    "Message" : "Found: Constant \"afix\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablepbepassword/PredictablePBEPasswordABHCase2.class",
+    "_Id" : "50"
+  }, {
+    "Message" : "Found: Constant \"afix\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablecryptographickey/PredictableCryptographicKeyABHCase2.class",
+    "_Id" : "51"
+  }, {
+    "Message" : "Found: Constant \"sagar\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablepbepassword/PredictablePBEPasswordABICase1.class",
+    "_Id" : "52"
+  }, {
+    "Message" : "Found: Constant \"defaultkey\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablecryptographickey/PredictableCryptographicKeyABICase2.class",
+    "_Id" : "53"
+  }, {
+    "Message" : "Found: Constant \"sagar\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablepbepassword/PredictablePBEPasswordABSCase1.class",
+    "_Id" : "54"
+  }, {
+    "Message" : "Found: Constant \"115\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablepbepassword/PredictablePBEPasswordBBCase2.class",
+    "_Id" : "55"
+  }, {
+    "Message" : "Found: \"abcde\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticinitializationvector/StaticInitializationVectorBBCase1.class",
+    "_Id" : "56"
+  }, {
+    "Message" : "Found: \"abcde\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticinitializationvector/StaticInitializationVectorABHCase1.class",
+    "_Id" : "57"
+  }, {
+    "Message" : "Found: \"abcde\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticinitializationvector/StaticInitializationVectorABICase1.class",
+    "_Id" : "58"
+  }, {
+    "Message" : "Found: \"abcde\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticinitializationvector/StaticInitializationVectorABSCase1.class",
+    "_Id" : "59"
+  }, {
+    "Message" : "Found: \"abcde\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticinitializationvector/StaticInitializationVectorABHCase2.class",
+    "_Id" : "60"
+  }, {
+    "Message" : "Found: \"-94\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticsalts/StaticSaltsABSCase1.class",
+    "_Id" : "61"
+  }, {
+    "Message" : "Found: \"aaa\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticsalts/StaticSaltsABHCase1.class",
+    "_Id" : "62"
+  }, {
+    "Message" : "Found: \"-94\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticsalts/StaticSaltsBBCase1.class",
+    "_Id" : "63"
+  }, {
+    "Message" : "Found: \"-94\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/staticsalts/StaticSaltsABICase1.class",
+    "_Id" : "64"
+  }, {
+    "Message" : "Found: \"20\"",
+    "Description" : "Used < 1000 iteration for PBE",
+    "RuleNumber" : 8,
+    "RuleDesc" : "Used < 1000 iteration for PBE",
+    "CWEId" : 326,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/pbeiteration/LessThan1000IterationPBEABICase1.class",
+    "_Id" : "65"
+  }, {
+    "Message" : "Found: \"20\"",
+    "Description" : "Used < 1000 iteration for PBE",
+    "RuleNumber" : 8,
+    "RuleDesc" : "Used < 1000 iteration for PBE",
+    "CWEId" : 326,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/pbeiteration/LessThan1000IterationPBEBBCase1.class",
+    "_Id" : "66"
+  }, {
+    "Message" : "Found: \"20\"",
+    "Description" : "Used < 1000 iteration for PBE",
+    "RuleNumber" : 8,
+    "RuleDesc" : "Used < 1000 iteration for PBE",
+    "CWEId" : 326,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/pbeiteration/LessThan1000IterationPBEABSCase1.class",
+    "_Id" : "67"
+  }, {
+    "Message" : "Found: \"-56\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsABICase1.class",
+    "_Id" : "68"
+  }, {
+    "Message" : "Found: \"100\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsABICase2.class",
+    "_Id" : "69"
+  }, {
+    "Message" : "Found: \"aaa\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsABHCase4.class",
+    "_Id" : "70"
+  }, {
+    "Message" : "Found: \"100\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsABICase1.class",
+    "_Id" : "71"
+  }, {
+    "Message" : "Found: \"100\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsABSCase2.class",
+    "_Id" : "72"
+  }, {
+    "Message" : "Found: \"-56\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsBBCase1.class",
+    "_Id" : "73"
+  }, {
+    "Message" : "Found: \"100\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsBBCase1.class",
+    "_Id" : "74"
+  }, {
+    "Message" : "Found: \"-56\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsABSCase1.class",
+    "_Id" : "75"
+  }, {
+    "Message" : "Found: \"aaa\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsABHCase2.class",
+    "_Id" : "76"
+  }, {
+    "Message" : "Found: \"100\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsBBCase2.class",
+    "_Id" : "77"
+  }, {
+    "Message" : "Found: \"100\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictableseeds/PredictableSeedsABSCase1.class",
+    "_Id" : "78"
+  }, {
+    "Message" : "Found: \"changeit\"",
+    "Description" : "Used Predictable KeyStore Password",
+    "RuleNumber" : 14,
+    "RuleDesc" : "Used Predictable KeyStore Password",
+    "CWEId" : 321,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablekeystorepassword/PredictableKeyStorePasswordABSCase1.class",
+    "_Id" : "79"
+  }, {
+    "Message" : "Found: \"changeit\"",
+    "Description" : "Used Predictable KeyStore Password",
+    "RuleNumber" : 14,
+    "RuleDesc" : "Used Predictable KeyStore Password",
+    "CWEId" : 321,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablekeystorepassword/PredictableKeyStorePasswordBBCase1.class",
+    "_Id" : "80"
+  }, {
+    "Message" : "Found: \"changeit\"",
+    "Description" : "Used Predictable KeyStore Password",
+    "RuleNumber" : 14,
+    "RuleDesc" : "Used Predictable KeyStore Password",
+    "CWEId" : 321,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablekeystorepassword/PredictableKeyStorePasswordABICase1.class",
+    "_Id" : "81"
+  }, {
+    "Message" : "Found: \"changeit\"",
+    "Description" : "Used Predictable KeyStore Password",
+    "RuleNumber" : 14,
+    "RuleDesc" : "Used Predictable KeyStore Password",
+    "CWEId" : 321,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/predictablekeystorepassword/PredictableKeyStorePasswordABICase2.class",
+    "_Id" : "82"
+  }, {
+    "Message" : "Found: \"http://www.google.com\"",
+    "Description" : "Used HTTP Protocol",
+    "RuleNumber" : 7,
+    "RuleDesc" : "Used HTTP Protocol",
+    "CWEId" : 650,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/http/HttpProtocolABICase1.class",
+    "_Id" : "83"
+  }, {
+    "Message" : "Found: \"http://www.google.com\"",
+    "Description" : "Used HTTP Protocol",
+    "RuleNumber" : 7,
+    "RuleDesc" : "Used HTTP Protocol",
+    "CWEId" : 650,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/http/HttpProtocolABICase2.class",
+    "_Id" : "84"
+  }, {
+    "Message" : "Found: \"http://www.facebook.com\"",
+    "Description" : "Used HTTP Protocol",
+    "RuleNumber" : 7,
+    "RuleDesc" : "Used HTTP Protocol",
+    "CWEId" : 650,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/http/HttpProtocolBBCase1.class",
+    "_Id" : "85"
+  }, {
+    "Message" : "Found: \"http://gmail.com\"",
+    "Description" : "Used HTTP Protocol",
+    "RuleNumber" : 7,
+    "RuleDesc" : "Used HTTP Protocol",
+    "CWEId" : 650,
+    "Severity" : "1",
+    "_FullPath" : "bench112.jar/org/cryptoapi/bench/http/HttpProtocolABSCase1.class",
+    "_Id" : "86"
+  } ],
+  "_SchemaVersion" : 3,
+  "_DateTime" : "2026-11-23_11:08:37",
+  "_UUID" : "00135877-b5bb-4d1a-a782-497989c1ac72"
+}

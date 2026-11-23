@@ -1,0 +1,253 @@
+{
+  "tool": "fsb",
+  "raw": "/root/work/final/runs/20261123_final/custom_fsb/fsb_raw.xml",
+  "overall": {
+    "n": 18,
+    "GTP": 14,
+    "TP": 10,
+    "FP": 0,
+    "FN": 4,
+    "TN": 4,
+    "precision": 1.0,
+    "recall": 0.7142857142857143
+  },
+  "by_category": {
+    "pilot_fn_probe": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 0,
+      "FP": 0,
+      "FN": 1,
+      "TN": 0,
+      "precision": null,
+      "recall": 0.0
+    },
+    "pilot_fp_probe": {
+      "n": 1,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 1,
+      "precision": null,
+      "recall": null
+    },
+    "pilot_negative": {
+      "n": 1,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 1,
+      "precision": null,
+      "recall": null
+    },
+    "suite_misuse": {
+      "n": 13,
+      "GTP": 13,
+      "TP": 10,
+      "FP": 0,
+      "FN": 3,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 0.7692307692307693
+    },
+    "suite_secure": {
+      "n": 2,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 2,
+      "precision": null,
+      "recall": null
+    }
+  },
+  "by_rule": {
+    "1": {
+      "n": 5,
+      "GTP": 3,
+      "TP": 1,
+      "FP": 0,
+      "FN": 2,
+      "TN": 2,
+      "precision": 1.0,
+      "recall": 0.3333333333333333
+    },
+    "2": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "3": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "4": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "5": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "6": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "7": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "8": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 0,
+      "FP": 0,
+      "FN": 1,
+      "TN": 0,
+      "precision": null,
+      "recall": 0.0
+    },
+    "9": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "10": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "11": {
+      "n": 2,
+      "GTP": 2,
+      "TP": 2,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "12": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "13": {
+      "n": 2,
+      "GTP": 1,
+      "TP": 0,
+      "FP": 0,
+      "FN": 1,
+      "TN": 1,
+      "precision": null,
+      "recall": 0.0
+    },
+    "14": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "15": {
+      "n": 1,
+      "GTP": 1,
+      "TP": 1,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "16": {
+      "n": 3,
+      "GTP": 2,
+      "TP": 2,
+      "FP": 0,
+      "FN": 0,
+      "TN": 1,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "table3_shared_rules": {
+    "basic": {
+      "n": 0,
+      "GTP": 0,
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": null,
+      "recall": null
+    },
+    "advanced": {
+      "n": 12,
+      "GTP": 9,
+      "TP": 7,
+      "FP": 0,
+      "FN": 2,
+      "TN": 3,
+      "precision": 1.0,
+      "recall": 0.7777777777777778
+    }
+  },
+  "alerts_total": 17,
+  "alerts_on_target": 11,
+  "alerts_unattributed": 0
+}

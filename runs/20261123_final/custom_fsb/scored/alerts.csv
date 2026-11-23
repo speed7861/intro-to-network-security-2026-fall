@@ -1,0 +1,18 @@
+tool_rule,group,cls,case,paper_rules,on_target,detail
+CIPHER_INTEGRITY,main,DefaultAESECBTest5,DefaultAESECBTest5,,0,Cipher with no integrity
+ECB_MODE,main,DefaultAESECBTest5,DefaultAESECBTest5,11,1,ECB mode is insecure
+CIPHER_INTEGRITY,main,ECBModeTest4,ECBModeTest4,,0,Cipher with no integrity
+ECB_MODE,main,ECBModeTest4,ECBModeTest4,11,1,ECB mode is insecure
+HARD_CODE_PASSWORD,main,HardcodedKeyStorePassTest11,HardcodedKeyStorePassTest11,1;2;3,1,Hard coded password
+HARD_CODE_KEY,main,HardcodedKeyTest1,HardcodedKeyTest1,1,1,Hard coded key
+PREDICTABLE_RANDOM,main,InsecureRandomTest8,InsecureRandomTest8,9,1,Predictable pseudorandom number generator
+RSA_KEY_SIZE,main,SmallRSAKeyTest10,SmallRSAKeyTest10,15,1,RSA usage with short key
+CIPHER_INTEGRITY,main,StaticIVTest6,StaticIVTest6,,0,Cipher with no integrity
+PADDING_ORACLE,main,StaticIVTest6,StaticIVTest6,,0,Cipher is susceptible to Padding Oracle
+STATIC_IV,main,StaticIVTest6,StaticIVTest6,12,1,Static IV
+CIPHER_INTEGRITY,main,WeakCipherDESTest7,WeakCipherDESTest7,,0,Cipher with no integrity
+DES_USAGE,main,WeakCipherDESTest7,WeakCipherDESTest7,14,1,DES is insecure
+DES_USAGE,main,WeakCipherDESTest7,WeakCipherDESTest7,14,1,DES is insecure
+PADDING_ORACLE,main,WeakCipherDESTest7,WeakCipherDESTest7,,0,Cipher is susceptible to Padding Oracle
+WEAK_MESSAGE_DIGEST_MD5,main,WeakHashMD5Test2,WeakHashMD5Test2,16,1,"MD2, MD4 and MD5 are weak hash functions"
+WEAK_MESSAGE_DIGEST_SHA1,main,WeakHashSHA1Test3,WeakHashSHA1Test3,16,1,SHA-1 is a weak hash function

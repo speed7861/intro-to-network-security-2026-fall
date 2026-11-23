@@ -1,0 +1,27 @@
+{
+  "projectName" : "CryptoGuard",
+  "ProjectVersion" : "04.05.03",
+  "Target" : {
+    "RawCommand" : "-in jar -s /root/work/final/runs/20261123_final/probes/RsaInStaticHelperLiteral512.jar -java /usr/lib/jvm/java-8-openjdk-amd64 -m D -o /root/work/final/runs/20261123_final/probes/RsaInStaticHelperLiteral512.cg2020.json -n",
+    "FullPath" : "RsaInStaticHelperLiteral512.jar/",
+    "Type" : "JAR",
+    "TargetSources" : [ "/root/work/final/runs/20261123_final/probes/RsaInStaticHelperLiteral512.jar" ],
+    "_PropertiesFilePath" : "gradle.properties",
+    "_ComputerOS" : "Linux_6.18.44-fc-v726",
+    "_JVMVersion" : "21.0.12.1+1-1-24.04.4-Ubuntu",
+    "_ProjectName" : "RsaInStaticHelperLiteral512"
+  },
+  "Issues" : [ {
+    "Message" : "Found: \"512\"",
+    "Description" : "Used export grade public Key",
+    "RuleNumber" : 5,
+    "RuleDesc" : "Used export grade public Key",
+    "CWEId" : 321,
+    "Severity" : "1",
+    "_FullPath" : "RsaInStaticHelperLiteral512.jar/RsaInStaticHelperLiteral512.class",
+    "_Id" : "0"
+  } ],
+  "_SchemaVersion" : 3,
+  "_DateTime" : "2026-11-23_11:13:21",
+  "_UUID" : "2ba93549-d216-459a-a6d3-824014460637"
+}

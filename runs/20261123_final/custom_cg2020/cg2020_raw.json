@@ -1,0 +1,342 @@
+{
+  "projectName" : "CryptoGuard",
+  "ProjectVersion" : "04.05.03",
+  "Target" : {
+    "RawCommand" : "-in jar -s /root/work/final/build/custom/custom.jar -java /usr/lib/jvm/java-8-openjdk-amd64 -m D -o /root/work/final/runs/20261123_final/custom_cg2020/cg2020_raw.json -n",
+    "FullPath" : "custom.jar/",
+    "Type" : "JAR",
+    "TargetSources" : [ "/root/work/final/build/custom/custom.jar" ],
+    "_PropertiesFilePath" : "gradle.properties",
+    "_ComputerOS" : "Linux_6.18.44-fc-v726",
+    "_JVMVersion" : "21.0.12.1+1-1-24.04.4-Ubuntu",
+    "_ProjectName" : "custom"
+  },
+  "Issues" : [ {
+    "Message" : "Found: \"AES/ECB/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/ECBModeTest4.class",
+    "_Id" : "0"
+  }, {
+    "Message" : "Found: \"DES/CBC/PKCS5Padding\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/WeakCipherDESTest7.class",
+    "_Id" : "1"
+  }, {
+    "Message" : "Found: \"AES\"",
+    "Description" : "Found broken crypto schemes",
+    "RuleNumber" : 1,
+    "RuleDesc" : "Found broken crypto schemes",
+    "CWEId" : 256,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/DefaultAESECBTest5.class",
+    "_Id" : "2"
+  }, {
+    "Message" : "Found: Untrused PRNG (java.util.Random)",
+    "Description" : "Used untrusted PRNG",
+    "RuleNumber" : 13,
+    "RuleDesc" : "Used untrusted PRNG",
+    "CWEId" : 338,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/InsecureRandomTest8.class",
+    "_Id" : "3"
+  }, {
+    "Message" : "Found: \"MD5\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/WeakHashMD5Test2.class",
+    "_Id" : "4"
+  }, {
+    "Message" : "Found: \"SHA-1\"",
+    "Description" : "Found broken hash functions",
+    "RuleNumber" : 2,
+    "RuleDesc" : "Found broken hash functions",
+    "CWEId" : 759,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/WeakHashSHA1Test3.class",
+    "_Id" : "5"
+  }, {
+    "Message" : "Found: Constant \"6543210987654321\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/ObfuscatedKeySliceTest13.class",
+    "_Id" : "6"
+  }, {
+    "Message" : "Found: Constant \"1234567890123456\"",
+    "Description" : "Used constant keys in code",
+    "RuleNumber" : 3,
+    "RuleDesc" : "Used constant keys in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/HardcodedKeyTest1.class",
+    "_Id" : "7"
+  }, {
+    "Message" : "Found: \"9\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "8"
+  }, {
+    "Message" : "Found: \"14\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "9"
+  }, {
+    "Message" : "Found: \"2\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "10"
+  }, {
+    "Message" : "Found: \"5\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "11"
+  }, {
+    "Message" : "Found: \"13\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "12"
+  }, {
+    "Message" : "Found: \"1\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "13"
+  }, {
+    "Message" : "Found: \"8\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "14"
+  }, {
+    "Message" : "Found: \"10\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "15"
+  }, {
+    "Message" : "Found: \"4\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "16"
+  }, {
+    "Message" : "Found: \"7\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "17"
+  }, {
+    "Message" : "Found: \"0\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "18"
+  }, {
+    "Message" : "Found: \"3\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "19"
+  }, {
+    "Message" : "Found: \"12\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "20"
+  }, {
+    "Message" : "Found: \"11\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "21"
+  }, {
+    "Message" : "Found: \"6\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "22"
+  }, {
+    "Message" : "Found: \"15\"",
+    "Description" : "Found constant IV in code",
+    "RuleNumber" : 10,
+    "RuleDesc" : "Found constant IV in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticIVTest6.class",
+    "_Id" : "23"
+  }, {
+    "Message" : "Found: \"1\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "24"
+  }, {
+    "Message" : "Found: \"5\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "25"
+  }, {
+    "Message" : "Found: \"4\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "26"
+  }, {
+    "Message" : "Found: \"7\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "27"
+  }, {
+    "Message" : "Found: \"3\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "28"
+  }, {
+    "Message" : "Found: \"8\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "29"
+  }, {
+    "Message" : "Found: \"2\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "30"
+  }, {
+    "Message" : "Found: \"6\"",
+    "Description" : "Found constant salts in code",
+    "RuleNumber" : 9,
+    "RuleDesc" : "Found constant salts in code",
+    "CWEId" : 547,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "31"
+  }, {
+    "Message" : "Found: \"100\"",
+    "Description" : "Used < 1000 iteration for PBE",
+    "RuleNumber" : 8,
+    "RuleDesc" : "Used < 1000 iteration for PBE",
+    "CWEId" : 326,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/LowIterationPBETest12.class",
+    "_Id" : "32"
+  }, {
+    "Message" : "Found: \"0\"",
+    "Description" : "Used < 1000 iteration for PBE",
+    "RuleNumber" : 8,
+    "RuleDesc" : "Used < 1000 iteration for PBE",
+    "CWEId" : 326,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/custom/pilot/PilotInfeasibleIteration.class",
+    "_Id" : "33"
+  }, {
+    "Message" : "Found: \"12345L\"",
+    "Description" : "Found predictable seeds in code",
+    "RuleNumber" : 11,
+    "RuleDesc" : "Found predictable seeds in code",
+    "CWEId" : 760,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/StaticSeedSecureRandomTest9.class",
+    "_Id" : "34"
+  }, {
+    "Message" : "Found: \"changeit123\"",
+    "Description" : "Used Predictable KeyStore Password",
+    "RuleNumber" : 14,
+    "RuleDesc" : "Used Predictable KeyStore Password",
+    "CWEId" : 321,
+    "Severity" : "1",
+    "_FullPath" : "custom.jar/HardcodedKeyStorePassTest11.class",
+    "_Id" : "35"
+  } ],
+  "_SchemaVersion" : 3,
+  "_DateTime" : "2026-11-23_11:08:13",
+  "_UUID" : "25e01a18-c447-45e6-b15f-c36a45f1af2e"
+}

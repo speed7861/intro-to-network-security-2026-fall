@@ -1,0 +1,11 @@
+tool=fsb
+exit_code=0
+wall_seconds=2.85
+date_utc=2026-11-23T16:08:18Z
+host=Linux 6.18.44-fc-v726 x86_64
+target_jar=/root/work/final/build/custom/custom.jar
+target_sha256=31f4b46ab414a13c77da8301917b8cbd7480d52eb034ac834e23d9d6bd80f90f
+raw_output=fsb_raw.xml
+raw_sha256=e82d8e44216889c4af3b99e8d19098bf2a5f7956a9ce9f1bc0658553387ae6b9
+cryptoguard_commit_cg2019=4097f921 cryptoguard_commit_cg2020=92551eeb bench112_commit=734aecb
+command=/usr/lib/jvm/java-8-openjdk-amd64/bin/java -cp ext/tools/fsb/lib/Saxon-HE-10.6.jar:ext/tools/fsb/lib/asm-9.2.jar:ext/tools/fsb/lib/asm-analysis-9.2.jar:ext/tools/fsb/lib/asm-commons-9.2.jar:ext/tools/fsb/lib/asm-tree-9.2.jar:ext/tools/fsb/lib/asm-util-9.2.jar:ext/tools/fsb/lib/bcel-6.5.0.jar:ext/tools/fsb/lib/commons-lang3-3.12.0.jar:ext/tools/fsb/lib/commons-text-1.9.jar:ext/tools/fsb/lib/dom4j-2.1.3.jar:ext/tools/fsb/lib/findsecbugs-plugin-1.12.0.jar:ext/tools/fsb/lib/gson-2.9.0.jar:ext/tools/fsb/lib/jaxen-1.2.0.jar:ext/tools/fsb/lib/jcip-annotations-1.0.jar:ext/tools/fsb/lib/jsr305-3.0.2.jar:ext/tools/fsb/lib/slf4j-api-1.8.0-beta4.jar:ext/tools/fsb/lib/spotbugs-4.6.0.jar:ext/tools/fsb/lib/spotbugs-annotations-4.6.0.jar: edu.umd.cs.findbugs.LaunchAppropriateUI -quiet -pluginList ext/tools/fsb/lib/findsecbugs-plugin-1.12.0.jar -include ext/tools/fsb/include.xml -xml:withMessages -output runs/20261123_final/custom_fsb/fsb_raw.xml build/custom/custom.jar

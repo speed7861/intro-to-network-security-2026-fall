@@ -1,0 +1,59 @@
+Analyzing JAR: /root/work/final/build/custom/custom.jar
+Warning: okhttp3.Request$Builder is a phantom class!
+Warning: retrofit2.Retrofit$Builder is a phantom class!
+=======================================
+***Violated Rule 1: Found broken crypto schemes ***Constants: ["AES/ECB/PKCS5Padding", "AES", "DES/CBC/PKCS5Padding"]
+[UnitContainer{unit=$fakeLocal_9[0] = "AES/ECB/PKCS5Padding", method='<ECBModeTest4: void main(java.lang.String[])>'}, UnitContainer{unit=$fakeLocal_9[0] = "AES", method='<DefaultAESECBTest5: void main(java.lang.String[])>'}, UnitContainer{unit=$fakeLocal_9[0] = "DES/CBC/PKCS5Padding", method='<WeakCipherDESTest7: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 1a: Found broken crypto schemes ***Constants: ["AES/GCM/NoPadding", "AES/GCM/NoPadding", "AES/CBC/PKCS5Padding", "AES/GCM/NoPadding"]
+=======================================
+=============================================
+***Violated Rule 13: Untrused PRNG (java.util.Random) Found in <InsecureRandomTest8: void main(java.lang.String[])>
+=============================================
+=======================================
+***Violated Rule 2: Found broken hash functions ***Constants: ["MD5", "SHA-1"]
+[UnitContainer{unit=$fakeLocal_5[0] = "MD5", method='<WeakHashMD5Test2: void main(java.lang.String[])>'}, UnitContainer{unit=$fakeLocal_5[0] = "SHA-1", method='<WeakHashSHA1Test3: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 2a: Found broken hash functions ***Constants: ["SHA-256"]
+=======================================
+=======================================
+***Violated Rule 3: Used constant keys in code ***Constants: ["6543210987654321", 256, "1234567890123456"]
+[UnitContainer{unit=specialinvoke $r0.<java.lang.StringBuilder: void <init>(java.lang.String)>("6543210987654321"), method='<ObfuscatedKeySliceTest13: byte[] getSecretBytes()>'}, UnitContainer{unit=virtualinvoke r1.<javax.crypto.KeyGenerator: void init(int)>(256), method='<custom.pilot.PilotSecureKey: void main(java.lang.String[])>'}, UnitContainer{unit=$r4 = "1234567890123456", method='<HardcodedKeyTest1: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 3a: Used constant keys in code ***Constants: [1, 0, 16, 0]
+[UnitContainer{unit=r8 = specialinvoke r0.<javax.crypto.KeyGenerator: javax.crypto.KeyGeneratorSpi nextSpi(javax.crypto.KeyGeneratorSpi,boolean)>(r8, 1), method='<javax.crypto.KeyGenerator: javax.crypto.SecretKey generateKey()>'}, UnitContainer{unit=$r5 = r0[0], method='<custom.pilot.PilotInfeasibleIteration: void main(java.lang.String[])>'}, UnitContainer{unit=r2 = newarray (byte)[16], method='<InsecureRandomTest8: void main(java.lang.String[])>'}, UnitContainer{unit=$r3 = staticinvoke <java.lang.StringCoding: byte[] encode(char[],int,int)>($r2, 0, $i0), method='<java.lang.String: byte[] getBytes()>'}]
+=======================================
+=======================================
+***Violated Rule 10: Found constant IV in code ***Constants: [4, 7, 1, 2, 14, 8, 10, 5, 13, 3, 0, 15, 11, 6, 9, 12]
+[UnitContainer{unit=$r6[4] = 4, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[7] = 7, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[1] = 1, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[2] = 2, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[14] = 14, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[8] = 8, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[10] = 10, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[5] = 5, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[13] = 13, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[3] = 3, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[0] = 0, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[15] = 15, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[11] = 11, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[6] = 6, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[9] = 9, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[12] = 12, method='<StaticIVTest6: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 10a: Found constant IV in code ***Constants: [4, 7, 1, 2, 14, 8, 10, 5, 13, 3, 0, 16, 15, 11, 6, 9, 12]
+[UnitContainer{unit=$r6[4] = 4, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[7] = 7, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[1] = 1, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[2] = 2, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[14] = 14, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[8] = 8, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[10] = 10, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[5] = 5, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[13] = 13, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[3] = 3, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[0] = 0, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6 = newarray (byte)[16], method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[15] = 15, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[11] = 11, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[6] = 6, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[9] = 9, method='<StaticIVTest6: void main(java.lang.String[])>'}, UnitContainer{unit=$r6[12] = 12, method='<StaticIVTest6: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 9: Found constant salts in code ***Constants: [3, 4, 7, 1, 8, 2, 5, 6]
+[UnitContainer{unit=$r3[2] = 3, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[3] = 4, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[6] = 7, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[0] = 1, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[7] = 8, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[1] = 2, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[4] = 5, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[5] = 6, method='<LowIterationPBETest12: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 9a: Found constant salts in code ***Constants: [2, 3, 6, 0, 7, 1, 4, 16, 5, 8]
+[UnitContainer{unit=$r3[2] = 3, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[3] = 4, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[6] = 7, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[0] = 1, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[7] = 8, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[1] = 2, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[4] = 5, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=r1 = newarray (byte)[16], method='<custom.pilot.PilotInfeasibleIteration: void main(java.lang.String[])>'}, UnitContainer{unit=$r3[5] = 6, method='<LowIterationPBETest12: void main(java.lang.String[])>'}, UnitContainer{unit=$r3 = newarray (byte)[8], method='<LowIterationPBETest12: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 8: Used < 1000 iteration for PBE ***Constants: [0, 100]
+[UnitContainer{unit=s1 = 0, method='<custom.pilot.PilotInfeasibleIteration: void main(java.lang.String[])>'}, UnitContainer{unit=$fakeLocal_6[1] = 100, method='<LowIterationPBETest12: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 8a: Used < 1000 iteration for PBE ***Constants: [10000]
+=======================================
+=======================================
+***Violated Rule 11: Found predictable seeds in code ***Constants: [12345L]
+[UnitContainer{unit=$fakeLocal_6[0] = 12345L, method='<StaticSeedSecureRandomTest9: void main(java.lang.String[])>'}]
+=======================================
+=======================================
+***Violated Rule 14: Used Predictable KeyStore Password ***Constants: ["changeit123"]
+[UnitContainer{unit=$r4 = "changeit123", method='<HardcodedKeyStorePassTest11: void main(java.lang.String[])>'}]
+=======================================

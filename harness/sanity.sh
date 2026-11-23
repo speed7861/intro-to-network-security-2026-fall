@@ -35,6 +35,15 @@ for i in 1 2; do
     -in jar -s "$B/bench112/bench112.jar" -java "$JDK8" -m D -o "$S/det_$i.json" -n >/dev/null 2>&1
 done
 
+# --- S7: the refinement-switch build with the switch OFF must match unmodified CG-2019 ---
+for j in bench112 custom; do
+  [ -f "$B/$j/$j.jar" ] || continue
+  "$JDK8/bin/java" -Dcg.norefine=false -cp "$(cat "$B/cg2019nr/classpath.txt")" main.rule.engine.RuleEngine \
+    jar "$B/$j/$j.jar" "$S/.nodeps" > "$S/s7_patched_off_$j.txt" 2>/dev/null
+  "$JDK8/bin/java" -cp "$(cat "$B/cg2019/classpath.txt")" main.rule.engine.RuleEngine \
+    jar "$B/$j/$j.jar" "$S/.nodeps" > "$S/s7_original_$j.txt" 2>/dev/null
+done
+
 python3 - "$R" "$S" <<'EOF'
 import csv, json, sys, collections, hashlib, pathlib
 R, S = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
@@ -81,6 +90,17 @@ tp = collections.Counter(int(r["paper_rule"]) for r in pc if r["outcome"] == "TP
 eq = [k for k in PAPER_CG_TP if tp[k] == PAPER_CG_TP[k]]
 res.append(("S6 CG-2019 per-rule TP equals paper Table 7 CryptoGuard column",
             f"{len(eq)}/16 rules equal", "differ (ours,paper): " + str({k: (tp[k], PAPER_CG_TP[k]) for k in PAPER_CG_TP if k not in eq})))
+# S7 refinement switch is inert when off
+def body(p):
+    return "\n".join(l for l in p.read_text().split("\n") if l.strip())
+s7 = []
+for j in ("bench112", "custom"):
+    a, b = S / f"s7_original_{j}.txt", S / f"s7_patched_off_{j}.txt"
+    if a.exists():
+        s7.append((j, body(a) == body(b), h(body(a)), len(body(a))))
+res.append(("S7 refinement-switch build with the switch off gives the same output as unmodified CG-2019",
+            "PASS" if s7 and all(x[1] for x in s7) else "FAIL",
+            "; ".join(f"{j}: {'identical' if ok else 'DIFFERENT'} (sha {hh}, {n} chars)" for j, ok, hh, n in s7)))
 md = ["# Sanity checks", "", "| Check | Result | Evidence |", "|---|---|---|"]
 md += [f"| {n} | {r} | {e} |" for n, r, e in res]
 (S / "SANITY.md").write_text("\n".join(md) + "\n")

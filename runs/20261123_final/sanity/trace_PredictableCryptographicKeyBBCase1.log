@@ -1,0 +1,26 @@
+### case=PredictableCryptographicKeyBBCase1  jar_sha256=a590993bfb516ba798358494b5771a02403040401a71192cfbac7a33e9b00f2b
+### source:
+     1	package org.cryptoapi.bench.predictablecryptographickey;
+     2	
+     3	import javax.crypto.spec.SecretKeySpec;
+     4	import java.security.SecureRandom;
+     5	import java.util.Arrays;
+     6	
+     7	public class PredictableCryptographicKeyBBCase1 {
+     8	    public static void main(String [] args){
+     9	        String defaultKey = "defaultkey";
+    10	        byte[] keyBytes = defaultKey.getBytes();
+    11	        keyBytes = Arrays.copyOf(keyBytes,16);
+    12	        SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
+    13	    }
+    14	}
+### CG-2019 output:
+Analyzing JAR: /root/work/final/runs/20261123_final/sanity/PredictableCryptographicKeyBBCase1.jar
+Warning: okhttp3.Request$Builder is a phantom class!
+Warning: retrofit2.Retrofit$Builder is a phantom class!
+### CG-2020 output (rule-engine log lines + JSON issues):
+2026-11-23 11:08:24,748 main ERROR Script support is not enabled
+2026-11-23 11:08:24,766 main ERROR No routes defined for RoutingAppender Sifter
+2026-11-23 11:08:24,767 main ERROR Null object returned for Routing in Appenders.
+2026-11-23 11:08:24,777 main ERROR Unable to locate appender "Sifter" for logger config "root"
+ISSUES: []

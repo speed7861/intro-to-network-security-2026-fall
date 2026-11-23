@@ -1,0 +1,11 @@
+key	KeyLiteralGetBytes
+key	KeyLiteralGetBytesCopyOf
+key	KeyLocalGetBytes
+key	KeyLocalGetBytesArraycopy
+key	KeyLocalGetBytesCopyOf
+rsa	RsaInHelperWithArrayParam512
+rsa	RsaInInstanceMethodVariable1024
+rsa	RsaInMainLiteral512
+rsa	RsaInMainVariable1024
+rsa	RsaInMainWithCipher
+rsa	RsaInStaticHelperLiteral512

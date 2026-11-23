@@ -1,5 +1,7 @@
 # Midpoint Project Evidence Package
 
+This is the midpoint submission from November 5, kept as it was submitted. Final results are in `docs/results.md`. One thing in section 2 turned out to be wrong. The description of the failure case leaves out that the key also goes through `Arrays.copyOf`, and the guess that `String.getBytes()` causes the miss was wrong. `Arrays.copyOf` is the real cause. See `docs/results.md`, section 4.
+
 Course: ECE 424 / ECE 539, Fall 2026
 Project: High-Precision Evaluation of Cryptographic API Misuses using CryptoGuard
 Team: Abdelrahman Naser, Mark Tymoshenko, Daniel Mulraney

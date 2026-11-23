@@ -1,0 +1,156 @@
+tool_rule,group,cls,case,paper_rules,on_target,detail
+5,main,org.cryptoapi.bench.insecureasymmetriccrypto.InsecureAsymmetricCipherABICase1,InsecureAsymmetricCipherABICase1,15,1,***Violated Rule 5: Used export grade public Key 
+5,main,org.cryptoapi.bench.insecureasymmetriccrypto.InsecureAsymmetricCipherBBCase1,InsecureAsymmetricCipherBBCase1,15,1,s0 = 1024
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase1,BrokenCryptoABICase1,11;14,1,"r2 = ""DES/ECB/PKCS5Padding"""
+1,main,org.cryptoapi.bench.ecbcrypto.EcbInSymmCryptoABSCase1,EcbInSymmCryptoABSCase1,11;14,1,"r1 = ""AES/ECB/PKCS5Padding"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoBBCase3,BrokenCryptoBBCase3,11;14,1,"$fakeLocal_14[0] = ""RC4"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABSCase3,BrokenCryptoABSCase3,11;14,1,"$fakeLocal_11[0] = ""RC4"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABSCase4,BrokenCryptoABSCase4,11;14,1,"$fakeLocal_11[0] = ""RC2"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase6,BrokenCryptoABICase6,11;14,1,"$r0 = ""Blowfish"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoBBCase2,BrokenCryptoBBCase2,11;14,1,"$fakeLocal_14[0] = ""Blowfish"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase3,BrokenCryptoABICase3,11;14,1,"r2 = ""RC4"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoBBCase4,BrokenCryptoBBCase4,11;14,1,"$fakeLocal_14[0] = ""RC2"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABSCase5,BrokenCryptoABSCase5,11;14,1,"$fakeLocal_11[0] = ""IDEA"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABSCase1,BrokenCryptoABSCase1,11;14,1,"$fakeLocal_11[0] = ""DES/ECB/PKCS5Padding"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase2,BrokenCryptoABICase2,11;14,1,"r2 = ""Blowfish"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase5,BrokenCryptoABICase5,11;14,1,"$r0 = ""DES/ECB/PKCS5Padding"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase7,BrokenCryptoABICase7,11;14,1,"$r0 = ""RC4"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase10,BrokenCryptoABICase10,11;14,1,"$r0 = ""IDEA"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase4,BrokenCryptoABICase4,11;14,1,"r2 = ""RC2"""
+1,main,org.cryptoapi.bench.ecbcrypto.EcbInSymmCryptoABICase2,EcbInSymmCryptoABICase2,11;14,1,"$r0 = ""AES/ECB/PKCS5Padding"""
+1,main,org.cryptoapi.bench.ecbcrypto.EcbInSymmCryptoBBCase1,EcbInSymmCryptoBBCase1,11;14,1,"$fakeLocal_14[0] = ""AES/ECB/PKCS5Padding"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase8,BrokenCryptoABICase8,11;14,1,"$r0 = ""RC2"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABSCase2,BrokenCryptoABSCase2,11;14,1,"$fakeLocal_11[0] = ""Blowfish"""
+1,main,org.cryptoapi.bench.ecbcrypto.EcbInSymmCryptoABICase1,EcbInSymmCryptoABICase1,11;14,1,"r2 = ""AES/ECB/PKCS5Padding"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoBBCase1,BrokenCryptoBBCase1,11;14,1,"$fakeLocal_15[0] = ""DES/ECB/PKCS5Padding"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoABICase9,BrokenCryptoABICase9,11;14,1,"r2 = ""IDEA"""
+1,main,org.cryptoapi.bench.brokencrypto.BrokenCryptoBBCase5,BrokenCryptoBBCase5,11;14,1,"$fakeLocal_14[0] = ""IDEA"""
+1,refined_out,,,11;14,0,=======================================
+13,main,org.cryptoapi.bench.untrustedprng.UntrustedPRNGCase1,UntrustedPRNGCase1,9,1,=============================================
+12,main,org.cryptoapi.bench.impropersslsocketfactory.CryptoImproperSocketManualHostname1,ImproperSocketManualHostABSCase1,6,1,=======================================
+12,main,org.cryptoapi.bench.impropersslsocketfactory.ImproperSocketManualHostABICase2,ImproperSocketManualHostABICase2,6,1,=======================================
+12,main,org.cryptoapi.bench.impropersslsocketfactory.ImproperSocketManualHostBBCase1,ImproperSocketManualHostBBCase1,6,1,=======================================
+12,main,org.cryptoapi.bench.impropersslsocketfactory.ImproperSocketManualHostABICase1,ImproperSocketManualHostABICase1,6,1,=======================================
+4,main,org.cryptoapi.bench.dummycertvalidation.DummyCertValidationCase1,DummyCertValidationCase1,5,1,=======================================
+6,main,org.cryptoapi.bench.dummyhostnameverifier.DummyHostNameVerifierCase1,DummyHostNameVerifierCase1,4,1,=======================================
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashBBCase3,BrokenHashBBCase3,16,1,"$fakeLocal_9[0] = ""MD4"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashBBCase4,BrokenHashBBCase4,16,1,"$fakeLocal_9[0] = ""MD2"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABSCase3,BrokenHashABSCase3,16,1,"$fakeLocal_11[0] = ""MD4"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABSCase2,BrokenHashABSCase2,16,1,"$fakeLocal_14[0] = ""MD5"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABSCase4,BrokenHashABSCase4,16,1,"$fakeLocal_14[0] = ""MD2"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABICase2,BrokenHashABICase2,16,1,"r2 = ""MD5"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABICase5,BrokenHashABICase5,16,1,"$r0 = ""SHA1"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashBBCase1,BrokenHashBBCase1,16,1,"$fakeLocal_9[0] = ""SHA1"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABICase4,BrokenHashABICase4,16,1,"r2 = ""MD2"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABICase7,BrokenHashABICase7,16,1,"$r0 = ""MD4"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABSCase1,BrokenHashABSCase1,16,1,"$fakeLocal_12[0] = ""SHA1"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABICase3,BrokenHashABICase3,16,1,"r2 = ""MD4"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABICase6,BrokenHashABICase6,16,1,"$r0 = ""MD5"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABICase8,BrokenHashABICase8,16,1,"$r0 = ""MD2"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashABICase1,BrokenHashABICase1,16,1,"r2 = ""SHA1"""
+2,main,org.cryptoapi.bench.brokenhash.BrokenHashBBCase2,BrokenHashBBCase2,16,1,"$fakeLocal_9[0] = ""MD5"""
+2,refined_out,,,16,0,=======================================
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordBBCase1,PredictablePBEPasswordBBCase1,1;2,1,"r1 = ""saagar"""
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordABHCase2,PredictablePBEPasswordABHCase2,1;2,1,"interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""aaa"", ""afix"")"
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordABSCase1,PredictablePBEPasswordABSCase1,1;2,1,"$fakeLocal_12[0] = """""
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordABHCase2,PredictablePBEPasswordABHCase2,1;2,1,"interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ccc"", ""cfix"")"
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordBBCase2,PredictablePBEPasswordBBCase2,1;2,1,$r4[0] = 115
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordABSCase1,PredictablePBEPasswordABSCase1,1;2,1,"r1 = ""sagar"""
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordBBCase2,PredictablePBEPasswordBBCase2,1;2,1,$r4 = newarray (char)[1]
+3,main,java.util.Random,,1;2,0,"$r2 = staticinvoke <java.util.stream.StreamSupport: java.util.stream.IntStream intStream(java.util.Spliterator$OfInt,boo"
+3,main,java.lang.String,,1;2,0,"$r4 = staticinvoke <java.lang.StringCoding: byte[] encode(java.lang.String,char[],int,int)>(r1, $r3, 0, $i0)"
+3,main,java.lang.String,,1;2,0,"$r1 = ""null"""
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordABHCase2,PredictablePBEPasswordABHCase2,1;2,1,"interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""bbb"", ""bfix"")"
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordABICase1,PredictablePBEPasswordABICase1,1;2,1,"r2 = ""sagar"""
+3,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordABHCase2,PredictablePBEPasswordABHCase2,1;2,1,"interfaceinvoke r2.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ddd"", ""dfix"")"
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABSCase1,StaticInitializationVectorABSCase1,12,1,"$r3 = ""abcde"""
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorCorrected,StaticInitializationVectorCorrected,12,1,r5 = newarray (byte)[16]
+10,main,java.lang.Byte,,12,0,"$b0 = staticinvoke <java.lang.Byte: byte parseByte(java.lang.String,int)>(r0, 10)"
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABICase2,StaticInitializationVectorABICase2,12,1,$r5[0] = $b0
+10,main,java.lang.String,,12,0,"$r4 = staticinvoke <java.lang.StringCoding: byte[] encode(java.lang.String,char[],int,int)>(r1, $r3, 0, $i0)"
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABHCase2,StaticInitializationVectorABHCase2,12,1,"interfaceinvoke r5.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ddd"", ""pqrst"")"
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABHCase2,StaticInitializationVectorABHCase2,12,1,"interfaceinvoke r5.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ccc"", ""klmno"")"
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABHCase1,StaticInitializationVectorABHCase1,12,1,"$r6 = ""abcde"""
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABHCase2,StaticInitializationVectorABHCase2,12,1,"interfaceinvoke r5.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""bbb"", ""fghij"")"
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABICase1,StaticInitializationVectorABICase1,12,1,"$r5 = ""abcde"""
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABHCase2,StaticInitializationVectorABHCase2,12,1,"interfaceinvoke r5.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""aaa"", ""abcde"")"
+10,main,org.cryptoapi.bench.staticinitializationvector.StaticInitializationVectorABICase2,StaticInitializationVectorABICase2,12,1,$r5 = newarray (byte)[1]
+10,main,java.lang.String,,12,0,"$r3 = staticinvoke <java.lang.StringCoding: byte[] encode(char[],int,int)>($r2, 0, $i0)"
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,specialinvoke $r4.<java.lang.Byte: void <init>(byte)>(-94)
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,specialinvoke $r5.<java.lang.Byte: void <init>(byte)>(-92)
+9,main,org.cryptoapi.bench.pbeiteration.LessThan1000IterationPBEABICase2,LessThan1000IterationPBEABICase2,10,0,r2 = newarray (byte)[32]
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,"interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ccc"", $r6)"
+9,main,java.lang.Byte,,10,0,"$b0 = staticinvoke <java.lang.Byte: byte parseByte(java.lang.String,int)>(r0, 10)"
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,$r10[0] = b0
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABSCase1,StaticSaltsABSCase1,10,1,$r2[0] = -94
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,"interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""bbb"", $r5)"
+9,main,org.cryptoapi.bench.predictablepbepassword.CryptoPredictablePBE,PredictablePBEPasswordABSCase1,10,0,r1 = newarray (byte)[16]
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABICase2,StaticSaltsABICase2,10,1,$r2 = newarray (byte)[1]
+9,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordCorrected,PredictablePBEPasswordCorrected,10,0,r3 = newarray (byte)[16]
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,$r10 = newarray (byte)[2]
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABICase1,StaticSaltsABICase1,10,1,$r4 = newarray (byte)[1]
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,$r10[1] = b0
+9,main,org.cryptoapi.bench.pbeiteration.LessThan1000IterationPBEABHCase1,LessThan1000IterationPBEABHCase1,10,0,r3 = newarray (byte)[32]
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABICase2,StaticSaltsABICase2,10,1,$r2[0] = $b1
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABICase1,StaticSaltsABICase1,10,1,$r4[0] = -94
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,"interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ddd"", $r7)"
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,specialinvoke $r6.<java.lang.Byte: void <init>(byte)>(-90)
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,specialinvoke $r7.<java.lang.Byte: void <init>(byte)>(-88)
+9,main,org.cryptoapi.bench.predictablepbepassword.PredictablePBEPasswordABHCase2,PredictablePBEPasswordABHCase2,10,0,r2 = newarray (byte)[16]
+9,main,org.cryptoapi.bench.staticsalts.StaticSaltsABHCase1,StaticSaltsABHCase1,10,1,"interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""aaa"", $r4)"
+8,main,org.cryptoapi.bench.pbeiteration.LessThan1000IterationPBEABSCase1,LessThan1000IterationPBEABSCase1,13,1,$fakeLocal_15[0] = 20
+8,main,org.cryptoapi.bench.pbeiteration.LessThan1000IterationPBEABICase1,LessThan1000IterationPBEABICase1,13,1,b0 = 20
+8,main,java.lang.Integer,,13,0,"$i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>(r0, 10)"
+8,main,org.cryptoapi.bench.pbeiteration.LessThan1000IterationPBEABHCase1,LessThan1000IterationPBEABHCase1,13,1,specialinvoke $r6.<java.lang.Integer: void <init>(int)>(20)
+8,main,org.cryptoapi.bench.pbeiteration.LessThan1000IterationPBEBBCase1,LessThan1000IterationPBEBBCase1,13,1,$fakeLocal_17[1] = 20
+8,refined_out,,,13,0,=======================================
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,"interfaceinvoke r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""aaa"", $r9)"
+11,main,java.lang.Byte,,8,0,"$b0 = staticinvoke <java.lang.Byte: byte parseByte(java.lang.String,int)>(r0, 10)"
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,specialinvoke $r15.<java.lang.Byte: void <init>(byte)>(-112)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,specialinvoke $r9.<java.lang.Byte: void <init>(byte)>(44)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsBBCase2,PredictableSeedsBBCase2,8,1,$r3[0] = b0
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,"interfaceinvoke r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ddd"", $r15)"
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABICase2,PredictableSeedsABICase2,8,1,$r2[0] = b0
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABICase1,PredictableSeedsABICase1,8,1,$r2 = newarray (byte)[2]
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,$r15[0] = b0
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABICase1,PredictableSeedsABICase1,8,1,$r2[1] = -56
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,specialinvoke $r5.<java.lang.Byte: void <init>(byte)>(100)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsBBCase2,PredictableSeedsBBCase2,8,1,$r3 = newarray (byte)[1]
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsBBCase1,PredictableSeedsBBCase1,8,1,$r4 = newarray (byte)[2]
+11,main,org.cryptoapi.bench.predictableseeds.CryptoPredictableSeed2,PredictableSeedsABSCase2,8,1,$r3[0] = b2
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABICase2,PredictableSeedsABICase2,8,1,b0 = 100
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,specialinvoke $r9.<java.lang.Byte: void <init>(byte)>(100)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsBBCase1,PredictableSeedsBBCase1,8,1,$r4[1] = -56
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,specialinvoke $r13.<java.lang.Byte: void <init>(byte)>(44)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,specialinvoke $r7.<java.lang.Byte: void <init>(byte)>(-56)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,specialinvoke $r11.<java.lang.Byte: void <init>(byte)>(-112)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,"interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""aaa"", $r5)"
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,$r20 = newarray (byte)[1]
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,specialinvoke $r11.<java.lang.Byte: void <init>(byte)>(-56)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsBBCase1,PredictableSeedsBBCase1,8,1,$r4[0] = 100
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,$r15[1] = b0
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,"interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ccc"", $r9)"
+11,main,java.util.Random,,8,0,$i3 = virtualinvoke r0.<java.util.Random: int next(int)>(32)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABICase2,PredictableSeedsABICase2,8,1,$r2 = newarray (byte)[1]
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,"interfaceinvoke r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""bbb"", $r11)"
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,$r20[0] = b0
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABICase1,PredictableSeedsABICase1,8,1,$r2[0] = 100
+11,main,java.util.Random,,8,0,$i0 = virtualinvoke r0.<java.util.Random: int next(int)>(32)
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABICase4,PredictableSeedsABICase4,8,1,$r2[0] = $b1
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,"interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""bbb"", $r7)"
+11,main,java.util.Random,,8,0,$l2 = $l1 << 32
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase4,PredictableSeedsABHCase4,8,1,"interfaceinvoke r4.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ccc"", $r13)"
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,$r15 = newarray (byte)[2]
+11,main,org.cryptoapi.bench.predictableseeds.PredictableSeedsABHCase2,PredictableSeedsABHCase2,8,1,"interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(""ddd"", $r11)"
+14,main,java.lang.String,,3,0,"$r1 = ""null"""
+14,main,org.cryptoapi.bench.predictablekeystorepassword.PredictableKeyStorePasswordABICase1,PredictableKeyStorePasswordABICase1,3,1,"r2 = ""changeit"""
+14,main,org.cryptoapi.bench.predictablekeystorepassword.PredictableKeyStorePasswordBBCase1,PredictableKeyStorePasswordBBCase1,3,1,"r3 = ""changeit"""
+14,main,org.cryptoapi.bench.predictablekeystorepassword.PredictableKeyStorePasswordABSCase1,PredictableKeyStorePasswordABSCase1,3,1,"r1 = ""changeit"""
+14,main,java.lang.String,,3,0,"$r4 = staticinvoke <java.lang.StringCoding: byte[] encode(java.lang.String,char[],int,int)>(r1, $r3, 0, $i0)"
+14,main,java.util.Random,,3,0,"$r2 = staticinvoke <java.util.stream.StreamSupport: java.util.stream.IntStream intStream(java.util.Spliterator$OfInt,boo"
+14,main,org.cryptoapi.bench.predictablekeystorepassword.PredictableKeyStorePasswordABICase2,PredictableKeyStorePasswordABICase2,3,1,"$r0 = ""changeit"""
+7,main,org.cryptoapi.bench.http.HttpProtocolABICase2,HttpProtocolABICase2,7,1,"$r0 = ""http://www.google.com"""
+7,main,org.cryptoapi.bench.http.HttpProtocolABSCase1,HttpProtocolABSCase1,7,1,"r1 = ""http://gmail.com"""
+7,main,org.cryptoapi.bench.http.HttpProtocolABICase1,HttpProtocolABICase1,7,1,"r1 = ""http://www.google.com"""
+7,main,org.cryptoapi.bench.http.HttpProtocolBBCase1,HttpProtocolBBCase1,7,1,"r1 = ""http://www.facebook.com"""
+7,refined_out,,,7,0,=======================================

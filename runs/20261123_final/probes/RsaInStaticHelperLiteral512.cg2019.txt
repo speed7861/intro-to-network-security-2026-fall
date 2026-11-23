@@ -1,0 +1,7 @@
+Analyzing JAR: /root/work/final/runs/20261123_final/probes/RsaInStaticHelperLiteral512.jar
+Warning: okhttp3.Request$Builder is a phantom class!
+Warning: retrofit2.Retrofit$Builder is a phantom class!
+=======================================
+***Violated Rule 5: Used export grade public Key ***Constants: [512]
+[UnitContainer{unit=$fakeLocal_8[0] = 512, method='<RsaInStaticHelperLiteral512: void go()>'}]
+=======================================

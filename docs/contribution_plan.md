@@ -1,5 +1,15 @@
 # Bounded contribution plan
 
+## How it turned out (November 23)
+
+This is the plan from the midpoint checkpoint. The results are in `docs/results.md`. Here is how the final work differs from the plan below:
+
+1. Custom test suite. Abdul's final 15 files aim for broad coverage of JCA misuse types (13 misuse, 2 secure) instead of the 12 targeted files listed below. Several of the targeted ideas were tested anyway as root-cause probes (`probes/`), including the `Arrays.copyOf` case (planned file #3). The suite found one CryptoGuard bug we hadn't predicted: RSA key size is never checked inside a method with an array parameter, such as `main`.
+2. Refinement ablation. Done with a patched build (`harness/patch_norefine.py`). The midpoint note below says the 6 extra detections "contradict" the paper's claim. Looking at which constants were flagged showed that 5 of the 6 were array lengths or indices, not the secret. Only one, a hard-coded PBE password in a `char[]`, is a real miss caused by refinement. Also, the full ablation gave exactly the same result as the earlier count of the "removed" group. Our guess that RI-III drops some alerts before they reach that group was wrong for the paper-era code.
+3. Discrepancy matrix. Dropped, because Daniel left the course. `docs/results.md` still compares the tools file by file on the custom suite.
+
+## Original plan (midpoint, November 5)
+
 Reproducing the paper's numbers is only half of the project. On top of that we are adding three things:
 
 1. A custom test suite of 15 Java files (Abdelrahman leads this).

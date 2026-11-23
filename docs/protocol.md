@@ -1,4 +1,6 @@
-# Experimental protocol (version 2, updated November 4, 2026)
+# Experimental protocol (version 3, final, November 23, 2026)
+
+Changes since version 2: the refinement ablation (E2) is done with a patched build, the custom suite (E4) is Abdul's 15 files plus our 3 pilots, E5 was dropped when Daniel left the course, and sanity check S7 and the root-cause probes were added. Results are in `docs/results.md`.
 
 ## Research question
 
@@ -23,6 +25,12 @@ Ground truth. The 112-case version has no label file, so `harness/ground_truth.p
 
 CryptoGuard. We use two builds. CG-2019 is the `ccs-submission` branch and is as close as we can get to the paper's tool. CG-2020 is the current release, v04.05.03. Running both lets us tell whether a difference comes from the paper or from later changes to the tool.
 
+Refinement switch. For the ablation, `harness/patch_norefine.py` patches a copy of CG-2019. Run with `-Dcg.norefine=true`, it reports every constant that a refinement insight would discard. The rules' own checks are left alone: the key-size limit for rule 15, the 1000-iteration limit for rule 13, and the pattern match for broken ciphers, hashes and HTTP. With the switch off, it has to give the same output as unmodified CG-2019 (sanity check S7).
+
+Custom tests. Abdul's 15 files (`custom_tests/*.java`) and our 3 pilot files (`custom_tests/src/custom/pilot/`). Labels are in `custom_tests/ground_truth_custom.csv`.
+
+Probes. `probes/` holds small variants of the cases CryptoGuard misses. Each one changes a single thing, to find out which change matters. They are not scored.
+
 SpotBugs. We use FindSecBugs 1.12.0 on SpotBugs 4.6.0. The paper used SpotBugs 3.0.1 through SWAMP, which is no longer available. Plain SpotBugs has almost no crypto checks, so FindSecBugs is the fair comparison. Because of the version gap, we don't expect our SpotBugs numbers to match the paper exactly.
 
 Compilation. All test cases (benchmark and custom) are compiled with javac to Java 8 bytecode.
@@ -44,23 +52,26 @@ Recall = TP / (TP + FN)
 
 Alerts for a different rule than the one a file targets are saved in `alerts.csv` but not counted, which is how the paper's per-rule tables work too.
 
+Secure custom files can list extra rules in the `extra_rules` column. For example, `SafeAESGCMTest14` lists rules 11, 12 and 14, so an alert for ECB mode, a static IV or a broken cipher on that file also counts as a false alarm.
+
 If a tool reports an alert without saying which class it is in, we don't credit it to any case. CG-2020 does this for its TrustManager and HostnameVerifier alerts, which costs it 2 detections. Counting those would give 84 of 96.
 
-This scoring works per case, not per line. The paper's Table 3 also counts alerts on the wrong line of a vulnerable file as false positives. Line-level comparison is part of Daniel's discrepancy analysis.
+This scoring works per case, not per line. The paper's Table 3 also counts alerts on the wrong line of a vulnerable file as false positives. We did not do line-level scoring. For the cases that change in the ablation, we checked by hand which constant each alert points at (see `docs/results.md`, section 3).
 
 ## Experiments
 
 | ID | What | Owner | Status |
 |---|---|---|---|
-| E1 | Both CryptoGuard versions on the 112 cases, per rule and per category, compared with Tables 7 and 3 | Mark | Done (baseline run) |
-| E2 | Refinement ablation: alerts and case results with refinement on and off | Mark | Partly done. CG-2019 lists the alerts it removed, which gives a lower bound: 42 percent of alerts removed, 6 more vulnerable cases would be caught without refinement and 1 secure case would become a false alarm. A full ablation needs a modified build, because RI-III removes alerts before they show up in that list |
-| E3 | FindSecBugs on the 112 cases and the custom suite | Abdelrahman | Baseline run done through the harness, analysis to come |
-| E4 | Custom test suite of 15 files targeting the failure modes in Section 7, run through all three tools | Abdelrahman writes the files, everyone runs them | 3 pilot files done, 12 to go (see `contribution_plan.md`) |
-| E5 | Map every detection to a CWE, then list where the tools disagree, including line-level false positives and false negatives | Daniel | Schema drafted. Inputs are in `runs/*/*/scored/alerts.csv` |
+| E1 | Both CryptoGuard versions on the 112 cases and the custom tests, compared with Tables 7 and 3 | Mark | Done |
+| E2 | Refinement ablation: CG-2019 with refinement on and off, on the benchmark and the custom tests | Mark | Done |
+| E3 | FindSecBugs on the 112 cases and the custom suite | Abdelrahman | Done |
+| E4 | Custom test suite (15 files) run through all tools | Abdelrahman wrote the files, Mark added labels and ran them through the harness | Done |
+| E5 | CWE mapping and discrepancy matrix | Daniel | Dropped. Daniel left the course |
+| E6 | Root-cause probes for each CryptoGuard miss found in E1 and E4 | Mark | Done |
 
 ## Sanity checks
 
-S0 is covered by `harness/run_all.sh` (see `fsb/fsb_manifest.txt` in each run). `harness/sanity.sh` runs S1 to S6 and writes the results to `runs/<run>/sanity/SANITY.md`.
+S0 is covered by `harness/run_all.sh` (see `fsb/fsb_manifest.txt` in each run). `harness/sanity.sh` runs S1 to S7 and writes the results to `runs/<run>/sanity/SANITY.md`.
 
 | ID | Check | Pass if |
 |---|---|---|
@@ -71,11 +82,14 @@ S0 is covered by `harness/run_all.sh` (see `fsb/fsb_manifest.txt` in each run). 
 | S4 | Failure probe | Run `PredictableCryptographicKeyBBCase1` on its own (the paper says it is detected) |
 | S5 | Determinism | Two runs of CG-2020 give the same set of issues |
 | S6 | Agreement with the paper | CG-2019 per-rule detections compared with Table 7 |
+| S7 | Refinement switch is harmless when off | The patched CG-2019 with the switch off gives the same output as unmodified CG-2019 on the benchmark and the custom tests |
 
 ## Threats to validity
 
 - Our ground truth is reconstructed from file names and differs from the paper on 2 rules.
 - CG-2019 is the closest public commit to the paper, but it may not be the exact build the authors used.
+- CG-2019 was written for Java 7. Java 7 can't be installed on current Ubuntu, so both CryptoGuard versions analyse against Java 8's runtime library.
 - CG-2020 runs on JDK 21 instead of JDK 8. Its results are the same from run to run, but we haven't compared them with a JDK 8 run yet.
 - FindSecBugs 1.12.0 is not the same as the paper's SpotBugs 3.0.1.
-- Per-case scoring doesn't catch alerts that point at the wrong line.
+- Per-case scoring doesn't catch alerts that point at the wrong line or the wrong constant.
+- The custom suite is 18 files, enough to find specific gaps but not to measure precision or recall on real code.

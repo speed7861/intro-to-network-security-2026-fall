@@ -1,0 +1,11 @@
+tool=cg2019nr
+exit_code=0
+wall_seconds=9.34
+date_utc=2026-11-23T16:07:52Z
+host=Linux 6.18.44-fc-v726 x86_64
+target_jar=/root/work/final/build/bench112/bench112.jar
+target_sha256=3cde1e1f9f7cc749a9803269b6b50d8fa6504fd88bcfb8e97baf81399a9e34d8
+raw_output=cg2019nr_raw.txt
+raw_sha256=e88930d63ea70933e1d4b0495ad7a2e0dcc7846f8d1ad4f2e83fb9760cc9bf7f
+cryptoguard_commit_cg2019=4097f921 cryptoguard_commit_cg2020=92551eeb bench112_commit=734aecb
+command=/usr/lib/jvm/java-8-openjdk-amd64/bin/java -Xmx4g -Dcg.norefine=true -cp build/cg2019nr/classes:build/cg2019nr/src/main/libs/soot-trunk.jar:build/cg2019nr/src/main/libs/dexlib2-2.2.1.jar:/usr/share/java/groovy-all.jar main.rule.engine.RuleEngine jar build/bench112/bench112.jar runs/20261123_final/cg2019nr/.nodeps

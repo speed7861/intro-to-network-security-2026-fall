@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: harness/run_tool.sh <cg2019|cg2020|fsb> <target.jar> <run_dir>
+# Usage: harness/run_tool.sh <cg2019|cg2019nr|cg2019nr_on|cg2020|fsb> <target.jar> <run_dir>
 # Runs one tool on one jar and writes raw output + stderr + manifest.txt into <run_dir>.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -13,6 +13,12 @@ case "$TOOL" in
     RAW="$OUT/cg2019_raw.txt"; mkdir -p "$OUT/.nodeps"
     CMD=("$JDK8/bin/java" -Xmx4g -cp "$(cat "$B/cg2019/classpath.txt")" main.rule.engine.RuleEngine jar "$JAR" "$OUT/.nodeps")
     "${CMD[@]}" > "$RAW" 2> >(grep -v "^Picked up JAVA_TOOL_OPTIONS" > "$OUT/cg2019_stderr.txt") || rc=$? ;;
+  cg2019nr|cg2019nr_on)
+    # Patched CG-2019. cg2019nr = refinement OFF; cg2019nr_on = same build, refinement ON (check S7).
+    RAW="$OUT/${TOOL}_raw.txt"; mkdir -p "$OUT/.nodeps"
+    FLAG="-Dcg.norefine=true"; [ "$TOOL" = cg2019nr_on ] && FLAG="-Dcg.norefine=false"
+    CMD=("$JDK8/bin/java" -Xmx4g "$FLAG" -cp "$(cat "$B/cg2019nr/classpath.txt")" main.rule.engine.RuleEngine jar "$JAR" "$OUT/.nodeps")
+    "${CMD[@]}" > "$RAW" 2> >(grep -v "^Picked up JAVA_TOOL_OPTIONS" > "$OUT/${TOOL}_stderr.txt") || rc=$? ;;
   cg2020)
     RAW="$OUT/cg2020_raw.json"
     CMD=("$JDK21/bin/java" -Xmx4g -cp "$(cat "$B/cg2020/classpath.txt")" frontEnd.Interface.EntryPoint
