@@ -321,7 +321,7 @@ function mcnemar(b, c) {
 }
 
 // ---------- rendering ----------
-const pct = x => isNaN(x) ? "—" : (100 * x).toFixed(1) + "%";
+const pct = x => isNaN(x) ? "n/a" : (100 * x).toFixed(1) + "%";
 const ci = (arr, a) => arr.length < 20 ? "interval needs more cases" : `${pct(quantile(arr, a / 2))} to ${pct(quantile(arr, 1 - a / 2))}`;
 function toolCard(cls, tool, c, m, boot, alpha, o, paper) {
   const paperLine = paper ? `<div class="paper">Paper Table 7: ${paper.tp} TP · ${paper.fp} FP · ${paper.fn} FN · precision ${pct(paper.tp/(paper.tp+paper.fp))} · recall ${pct(paper.tp/(paper.tp+paper.fn))}</div>` : "";
@@ -408,10 +408,10 @@ function update() {
     (sig ? `At the ${$("conf").value}% level this gap is too large to be chance (exact McNemar p = ${p < 0.0001 ? p.toExponential(1) : p.toFixed(4)}).` : `At the ${$("conf").value}% level this could be chance (exact McNemar p = ${p.toFixed(3)}).`);
   $("verdict").innerHTML = `${text} ${P.length && b + c ? `<span class="pill ${sig ? "sig" : ""}">${sig ? "significant" : "not significant"}</span>` : ""}`;
   $("stats").innerHTML = [
-    ["Recall gap (A minus B)", isNaN(dr) ? "—" : (dr >= 0 ? "+" : "") + (100 * dr).toFixed(1) + " pts"],
-    [`${$("conf").value}% interval of the gap`, boot.dr.length < 20 ? "—" : `${(100 * quantile(boot.dr, alpha / 2)).toFixed(1)} to ${(100 * quantile(boot.dr, 1 - alpha / 2)).toFixed(1)}`],
+    ["Recall gap (A minus B)", isNaN(dr) ? "n/a" : (dr >= 0 ? "+" : "") + (100 * dr).toFixed(1) + " pts"],
+    [`${$("conf").value}% interval of the gap`, boot.dr.length < 20 ? "n/a" : `${(100 * quantile(boot.dr, alpha / 2)).toFixed(1)} to ${(100 * quantile(boot.dr, 1 - alpha / 2)).toFixed(1)}`],
     ["Only A catches", String(b)], ["Only B catches", String(c)],
-    ["McNemar p-value", P.length && b + c ? (p < 0.0001 ? p.toExponential(1) : p.toFixed(4)) : "—"]
+    ["McNemar p-value", P.length && b + c ? (p < 0.0001 ? p.toExponential(1) : p.toFixed(4)) : "n/a"]
   ].map(([k, v]) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
   $("chart").innerHTML = chart(rows, opt);
   $("diff").innerHTML = diffTable(rows, opt);

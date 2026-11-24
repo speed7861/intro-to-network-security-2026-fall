@@ -29,7 +29,7 @@ for c in BrokenHashBBCase2 PredictableCryptographicKeyBBCase1; do
   } > "$S/trace_$c.log" 2>&1
 done
 
-# --- S5: determinism — CG-2020 twice on the full benchmark, compare issue sets ---
+# --- S5: determinism. Run CG-2020 twice on the full benchmark and compare issue sets ---
 for i in 1 2; do
   "$JDK21/bin/java" -cp "$(cat "$B/cg2020/classpath.txt")" frontEnd.Interface.EntryPoint \
     -in jar -s "$B/bench112/bench112.jar" -java "$JDK8" -m D -o "$S/det_$i.json" -n >/dev/null 2>&1

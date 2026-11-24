@@ -90,7 +90,7 @@ def prf(tp, fp, fn):
 
 
 def fmt(x):
-    return "—" if x is None else f"{100*x:.1f}%"
+    return "n/a" if x is None else f"{100*x:.1f}%"
 
 
 def main(tool, raw, gt_csv, cmap_tsv, out_dir):
@@ -186,18 +186,18 @@ def main(tool, raw, gt_csv, cmap_tsv, out_dir):
            "|---|---|---|---|---|---|---|"]
     for k in range(1, 17):
         a = S["by_rule"][str(k)]; p = PAPER_T7[k]
-        md.append(f"| {k} | {a['GTP']}/{p[0]} | {a['TP']} | {p[1]} | {'—' if p[3] is None else p[3]} | {a['FP']} | {a['FN']} |")
+        md.append(f"| {k} | {a['GTP']}/{p[0]} | {a['TP']} | {p[1]} | {'n/a' if p[3] is None else p[3]} | {a['FP']} | {a['FN']} |")
     if "ablation_partial" in S:
         ab = S["ablation_partial"]; c = ab["case_level_without_refinement"]
-        md += ["", "## Refinement ablation (partial — see docs/protocol.md §E2)", "",
+        md += ["", "## Alerts removed by refinement (see docs/results.md, section 3)", "",
                f"Alerts kept: {ab['alerts_kept']}; alerts moved to 'other sources' by refinement: "
-               f"{ab['alerts_refined_out']} ({fmt(ab['reduction'])} reduction; paper reports 76–80% on real projects).", "",
+               f"{ab['alerts_refined_out']} ({fmt(ab['reduction'])} reduction; paper reports 76-80% on real projects).", "",
                "Case-level if refined-out alerts were reported: " + line("no-refinement", c)]
     md += ["", "## Misses and false alarms", ""]
     for r in rows:
         if r["outcome"] in ("FN", "FP"):
             md.append(f"- **{r['outcome']}** `{r['case']}` (rule {r['paper_rule']}, {r['category']})"
-                      + (f" — would be detected without refinement" if r["outcome"] == "FN" and r["detected_without_refinement"] else ""))
+                      + (f" (would be detected without refinement)" if r["outcome"] == "FN" and r["detected_without_refinement"] else ""))
     (out / "summary.md").write_text("\n".join(md) + "\n")
     print(f"{tool}: P={fmt(o['precision'])} R={fmt(o['recall'])} TP={o['TP']} FP={o['FP']} FN={o['FN']} -> {out}/summary.md")
 

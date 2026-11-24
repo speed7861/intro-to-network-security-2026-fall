@@ -3,7 +3,7 @@ package custom.pilot;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.SecureRandom;
 
-/** PILOT P2 (paper §7, false positives): the jackrabbit-oak pattern. iteration=0 is
+/** PILOT P2 (paper Section 7, false positives): the jackrabbit-oak pattern. iteration=0 is
  *  overwritten on every path before use, so the real count is 10000. The paper predicts a
  *  path-insensitive FALSE ALARM on the constant 0. Ground truth: secure (rule 13). */
 public class PilotInfeasibleIteration {
