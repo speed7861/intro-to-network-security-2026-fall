@@ -1,0 +1,423 @@
+<title>CryptoGuard Results Explorer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an audit console. Controls on the left rail, the two tools compared side by side on the right. */
+:root {
+  --bg: #f4f6f4;
+  --panel: #ffffff;
+  --ink: #18211d;
+  --muted: #5b6862;
+  --line: #d9e0dc;
+  --soft: #e9eeeb;
+  --a: #0e7268;
+  --a-soft: #d3ebe7;
+  --b: #a8540a;
+  --b-soft: #f4e2cf;
+  --good: #23804a;
+  --bad: #b3261e;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101513; --panel: #171e1b; --ink: #e3e9e5; --muted: #9aa8a1; --line: #2b3531; --soft: #1f2824;
+    --a: #3cc7b6; --a-soft: #143a35; --b: #f0a24a; --b-soft: #3f2a12; --good: #5fcf8a; --bad: #ff8a80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101513; --panel: #171e1b; --ink: #e3e9e5; --muted: #9aa8a1; --line: #2b3531; --soft: #1f2824;
+  --a: #3cc7b6; --a-soft: #143a35; --b: #f0a24a; --b-soft: #3f2a12; --good: #5fcf8a; --bad: #ff8a80;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 28px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { display: grid; gap: 6px; margin-bottom: 22px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 4vw, 38px); line-height: 1.1; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 70ch; margin: 0; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 18px; margin: 0; }
+h3 { font-family: var(--body); font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.layout { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.controls { display: grid; gap: 18px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
+@media (max-width: 900px) { .controls { position: static; } }
+.group { display: grid; gap: 8px; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+button, select, input { font: inherit; color: inherit; }
+.btn { border: 1px solid var(--line); background: var(--soft); border-radius: 6px; padding: 5px 10px; font-size: 13px; cursor: pointer; }
+.btn:hover { border-color: var(--muted); }
+.btn:focus-visible, select:focus-visible, input:focus-visible, .chip:focus-within { outline: 2px solid var(--a); outline-offset: 2px; }
+label.row { display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 6px; font-size: 14px; cursor: pointer; }
+label.row .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.sel { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+select { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); }
+.sel.a select { border-left: 4px solid var(--a); }
+.sel.b select { border-left: 4px solid var(--b); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.chip span { display: inline-block; font-family: var(--mono); font-size: 12px; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.chip input:checked + span { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.range { display: grid; gap: 2px; font-size: 13px; }
+.range .top { display: flex; justify-content: space-between; color: var(--muted); }
+.range output { font-family: var(--mono); color: var(--ink); }
+input[type=range] { width: 100%; accent-color: var(--a); }
+.toggle { display: grid; grid-template-columns: 22px 1fr; gap: 6px; font-size: 14px; align-items: start; cursor: pointer; }
+.toggle small { display: block; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.results { display: grid; gap: 20px; min-width: 0; }
+.layout > *, .results > *, .duo > * { min-width: 0; }
+.status { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 640px) { .duo { grid-template-columns: minmax(0, 1fr); } }
+.tool { display: grid; gap: 12px; border-top: 4px solid var(--a); }
+.tool.b { border-top-color: var(--b); }
+.tool .name { font-family: var(--display); font-weight: 700; font-size: 17px; }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.metric { display: grid; gap: 1px; }
+.metric .k { font-size: 12px; color: var(--muted); }
+.metric .v { font-family: var(--mono); font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.metric .ci { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.cm { display: grid; grid-template-columns: auto 1fr 1fr; gap: 4px; font-size: 13px; }
+.cm div { padding: 6px 8px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+.cm .h { color: var(--muted); font-size: 12px; padding: 2px 8px; }
+.cm .cell { background: var(--soft); font-family: var(--mono); display: flex; justify-content: space-between; gap: 8px; }
+.cm .cell b { font-weight: 500; }
+.cm .ok { box-shadow: inset 3px 0 0 var(--good); }
+.cm .no { box-shadow: inset 3px 0 0 var(--bad); }
+.paper { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.verdict { display: grid; gap: 10px; }
+.verdict .big { font-size: 15px; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--soft); border: 1px solid var(--line); }
+.pill.sig { background: var(--good); color: var(--panel); border-color: var(--good); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.stat { background: var(--soft); border-radius: 8px; padding: 8px 10px; }
+.stat .k { font-size: 12px; color: var(--muted); }
+.stat .v { font-family: var(--mono); font-size: 18px; font-variant-numeric: tabular-nums; }
+.legend { display: flex; gap: 14px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+.chart-wrap { overflow-x: auto; }
+svg text { font-family: var(--mono); fill: var(--ink); }
+svg .lbl { font-family: var(--body); }
+svg .muted { fill: var(--muted); }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; }
+td.mono { font-family: var(--mono); }
+.hit { color: var(--good); font-weight: 600; }
+.miss { color: var(--bad); font-weight: 600; }
+.quiet { color: var(--muted); }
+details { font-size: 14px; }
+details summary { cursor: pointer; font-weight: 600; }
+details p, details li { color: var(--muted); max-width: 75ch; }
+footer { margin-top: 24px; font-size: 12px; color: var(--muted); font-family: var(--mono); }
+tr.more { display: none; }
+.show-all tr.more { display: table-row; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Team I02 · ECE 424 / ECE 539 · CCS '19 paper study</div>
+    <h1>CryptoGuard Results Explorer</h1>
+    <p class="lede">Every test case from our final run (112 CryptoAPI-Bench cases, Abdul's 15 files and 3 pilot files), with each tool's verdict. Pick two tools, narrow the cases, change the scoring rules, and the precision, recall, confidence intervals and significance test update live.</p>
+  </header>
+
+  <div class="layout">
+    <aside class="panel controls" aria-label="Settings">
+      <div class="group">
+        <h3>Presets</h3>
+        <div class="presets">
+          <button class="btn" type="button" id="p-main">Slide 6: 127 cases</button>
+          <button class="btn" type="button" id="p-abl">Ablation</button>
+          <button class="btn" type="button" id="p-paper">Paper benchmark</button>
+          <button class="btn" type="button" id="p-suite">Abdul's suite</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3>Compare</h3>
+        <label class="sel a" for="toolA">Tool A<select id="toolA"></select></label>
+        <label class="sel b" for="toolB">Tool B<select id="toolB"></select></label>
+      </div>
+
+      <div class="group">
+        <h3>Test cases</h3>
+        <label class="row" for="ds-bench"><input type="checkbox" id="ds-bench" checked><span>CryptoAPI-Bench</span><span class="n">112</span></label>
+        <label class="row" for="ds-suite"><input type="checkbox" id="ds-suite" checked><span>Abdul's suite</span><span class="n">15</span></label>
+        <label class="row" for="ds-pilot"><input type="checkbox" id="ds-pilot"><span>Pilot files</span><span class="n">3</span></label>
+      </div>
+
+      <div class="group">
+        <h3>Case types</h3>
+        <div class="chips" id="cats"></div>
+      </div>
+
+      <div class="group">
+        <h3>Rules (paper Table 1)</h3>
+        <div class="presets">
+          <button class="btn" type="button" id="r-all">All 16</button>
+          <button class="btn" type="button" id="r-shared">6 shared</button>
+          <button class="btn" type="button" id="r-const">Constants</button>
+          <button class="btn" type="button" id="r-none">None</button>
+        </div>
+        <div class="chips" id="rules"></div>
+      </div>
+
+      <div class="group">
+        <h3>Scoring rules</h3>
+        <label class="toggle" for="opt-arr"><input type="checkbox" id="opt-arr" checked><span>Count array-length hits as detections<small>Applies to CryptoGuard 2019 with refinement off. 6 of its hits point at an array size or index, not the secret.</small></span></label>
+        <label class="toggle" for="opt-unk"><input type="checkbox" id="opt-unk"><span>Credit alerts with an unknown location<small>CryptoGuard 2020 reports its TrustManager and HostnameVerifier alerts at location UNKNOWN (2 cases).</small></span></label>
+      </div>
+
+      <div class="group">
+        <h3>Statistics</h3>
+        <div class="range"><div class="top"><label for="beta">F-score weight β</label><output id="beta-o" for="beta">1.0</output></div><input type="range" id="beta" min="-2" max="2" step="0.25" value="0" aria-describedby="beta-help"><small class="quiet" id="beta-help">Left favours precision, right favours recall.</small></div>
+        <div class="range"><div class="top"><label for="conf">Confidence level</label><output id="conf-o" for="conf">95%</output></div><input type="range" id="conf" min="80" max="99" step="1" value="95"></div>
+        <label class="sel" for="boot">Bootstrap resamples<select id="boot"><option>500</option><option selected>2000</option><option>5000</option></select></label>
+        <div class="range"><div class="top"><label for="seed">Random seed</label><output id="seed-o" for="seed">424</output></div><input type="range" id="seed" min="1" max="999" step="1" value="424"></div>
+      </div>
+    </aside>
+
+    <main class="results">
+      <div class="status" id="status" aria-live="polite"></div>
+
+      <section class="duo" id="duo"></section>
+
+      <section class="panel verdict">
+        <h2>Is the difference real?</h2>
+        <div class="big" id="verdict"></div>
+        <div class="stats" id="stats"></div>
+      </section>
+
+      <section class="panel">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:10px">
+          <h2>Recall by rule</h2>
+          <div class="legend"><span><i style="background:var(--a)"></i><span id="lg-a"></span></span><span><i style="background:var(--b)"></i><span id="lg-b"></span></span></div>
+        </div>
+        <div class="chart-wrap" id="chart"></div>
+      </section>
+
+      <section class="panel">
+        <h2 style="margin-bottom:10px">Cases where the tools disagree</h2>
+        <div class="tablewrap" id="diff"></div>
+      </section>
+
+      <section class="panel">
+        <details>
+          <summary>How the numbers are computed</summary>
+          <ul>
+            <li>Each case targets one rule. A tool "detects" a case if it raises an alert for that rule in that case's file. Misuse cases score TP or FN, secure cases score FP or TN.</li>
+            <li>Precision = TP / (TP + FP). Recall = TP / (TP + FN). F-β weights recall β times as much as precision.</li>
+            <li>Confidence intervals come from a percentile bootstrap: the selected cases are resampled with replacement, and the metric is recomputed for each resample. The seed makes this repeatable.</li>
+            <li>The significance test is an exact McNemar test on the misuse cases. It only looks at cases where exactly one tool is right, so it compares the two tools on the same cases.</li>
+            <li>Source: <code>runs/20261123_final</code> in the team repository (github.com/speed7861/intro-to-network-security-2026-fall). Paper figures are from Table 7 of Rahaman et al., CCS 2019.</li>
+          </ul>
+        </details>
+      </section>
+    </main>
+  </div>
+  <footer>Data: runs/20261123_final · 130 cases · tools: CryptoGuard ccs-submission (2019), CryptoGuard v04.05.03 (2020), SpotBugs + FindSecBugs</footer>
+</div>
+
+<script>
+const CASES = [{"n":"PredictableCryptographicKeyABHCase1","ds":"bench","r":1,"c":"fp_test","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictableCryptographicKeyABHCase2","ds":"bench","r":1,"c":"fp_test","y":1,"cg2019":0,"cg2019nr":0,"cg2020":1,"fsb":0},{"n":"PredictableCryptographicKeyABICase1","ds":"bench","r":1,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictableCryptographicKeyABICase2","ds":"bench","r":1,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":0,"cg2020":1,"fsb":1},{"n":"PredictableCryptographicKeyABSCase1","ds":"bench","r":1,"c":"field_sensitive","y":1,"cg2019":0,"cg2019nr":0,"cg2020":1,"fsb":0},{"n":"PredictableCryptographicKeyBBCase1","ds":"bench","r":1,"c":"basic","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictableCryptographicKeyCorrected","ds":"bench","r":1,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictablePBEPasswordABHCase1","ds":"bench","r":2,"c":"fp_test","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictablePBEPasswordABHCase2","ds":"bench","r":2,"c":"fp_test","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictablePBEPasswordABICase1","ds":"bench","r":2,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictablePBEPasswordABICase2","ds":"bench","r":2,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictablePBEPasswordABSCase1","ds":"bench","r":2,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictablePBEPasswordBBCase1","ds":"bench","r":2,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":0,"fsb":1},{"n":"PredictablePBEPasswordBBCase2","ds":"bench","r":2,"c":"basic","y":1,"cg2019":0,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"PredictablePBEPasswordCorrected","ds":"bench","r":2,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictableKeyStorePasswordABHCase1","ds":"bench","r":3,"c":"fp_test","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictableKeyStorePasswordABICase1","ds":"bench","r":3,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictableKeyStorePasswordABICase2","ds":"bench","r":3,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"PredictableKeyStorePasswordABSCase1","ds":"bench","r":3,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictableKeyStorePasswordBBCase1","ds":"bench","r":3,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"PredictableKeyStorePasswordCorrected","ds":"bench","r":3,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"DummyHostNameVerifierCase1","ds":"bench","r":4,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":0,"fsb":1,"unk":1},{"n":"DummyHostNameVerifierCorrected","ds":"bench","r":4,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"DummyCertValidationCase1","ds":"bench","r":5,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":0,"fsb":1,"unk":1},{"n":"ImproperSocketManualHostABICase1","ds":"bench","r":6,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"ImproperSocketManualHostABICase2","ds":"bench","r":6,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"ImproperSocketManualHostABSCase1","ds":"bench","r":6,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"ImproperSocketManualHostBBCase1","ds":"bench","r":6,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"HttpProtocolABICase1","ds":"bench","r":7,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"HttpProtocolABICase2","ds":"bench","r":7,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"HttpProtocolABSCase1","ds":"bench","r":7,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"HttpProtocolBBCase1","ds":"bench","r":7,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"HttpProtocolCase1Corrected","ds":"bench","r":7,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"HttpProtocolCase2Corrected","ds":"bench","r":7,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictableSeedsABHCase2","ds":"bench","r":8,"c":"fp_test","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictableSeedsABHCase4","ds":"bench","r":8,"c":"fp_test","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictableSeedsABICase1","ds":"bench","r":8,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictableSeedsABICase2","ds":"bench","r":8,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictableSeedsABICase3","ds":"bench","r":8,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PredictableSeedsABICase4","ds":"bench","r":8,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":1,"cg2020":0,"fsb":0,"arr":1},{"n":"PredictableSeedsABSCase1","ds":"bench","r":8,"c":"field_sensitive","y":1,"cg2019":0,"cg2019nr":0,"cg2020":1,"fsb":0},{"n":"PredictableSeedsABSCase2","ds":"bench","r":8,"c":"field_sensitive","y":1,"cg2019":0,"cg2019nr":1,"cg2020":1,"fsb":0,"arr":1},{"n":"PredictableSeedsBBCase1","ds":"bench","r":8,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"PredictableSeedsBBCase2","ds":"bench","r":8,"c":"basic","y":1,"cg2019":0,"cg2019nr":1,"cg2020":1,"fsb":0,"arr":1},{"n":"PredictableSeedsCorrected","ds":"bench","r":8,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"UntrustedPRNGCase1","ds":"bench","r":9,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"UntrustedPRNGCorrected","ds":"bench","r":9,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"StaticSaltsABHCase1","ds":"bench","r":10,"c":"fp_test","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"StaticSaltsABICase1","ds":"bench","r":10,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"StaticSaltsABICase2","ds":"bench","r":10,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":1,"cg2020":0,"fsb":0,"arr":1},{"n":"StaticSaltsABSCase1","ds":"bench","r":10,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"StaticSaltsBBCase1","ds":"bench","r":10,"c":"basic","y":1,"cg2019":0,"cg2019nr":0,"cg2020":1,"fsb":0},{"n":"StaticSaltsCorrected","ds":"bench","r":10,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"EcbInSymmCryptoABICase1","ds":"bench","r":11,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"EcbInSymmCryptoABICase2","ds":"bench","r":11,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"EcbInSymmCryptoABSCase1","ds":"bench","r":11,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"EcbInSymmCryptoBBCase1","ds":"bench","r":11,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"EcbInSymmCryptoCorrected","ds":"bench","r":11,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"StaticInitializationVectorABHCase1","ds":"bench","r":12,"c":"fp_test","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"StaticInitializationVectorABHCase2","ds":"bench","r":12,"c":"fp_test","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"StaticInitializationVectorABICase1","ds":"bench","r":12,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"StaticInitializationVectorABICase2","ds":"bench","r":12,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":1,"cg2020":0,"fsb":1,"arr":1},{"n":"StaticInitializationVectorABSCase1","ds":"bench","r":12,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"StaticInitializationVectorBBCase1","ds":"bench","r":12,"c":"basic","y":1,"cg2019":0,"cg2019nr":0,"cg2020":1,"fsb":1},{"n":"StaticInitializationVectorCorrected","ds":"bench","r":12,"c":"correct","y":0,"cg2019":0,"cg2019nr":1,"cg2020":0,"fsb":0,"arr":1},{"n":"LessThan1000IterationPBEABHCase1","ds":"bench","r":13,"c":"fp_test","y":1,"cg2019":1,"cg2019nr":1,"cg2020":0,"fsb":0},{"n":"LessThan1000IterationPBEABICase1","ds":"bench","r":13,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"LessThan1000IterationPBEABICase2","ds":"bench","r":13,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"LessThan1000IterationPBEABSCase1","ds":"bench","r":13,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"LessThan1000IterationPBEBBCase1","ds":"bench","r":13,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"LessThan1000IterationPBECorrected","ds":"bench","r":13,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"BrokenCryptoABICase1","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABICase10","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABICase2","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABICase3","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABICase4","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABICase5","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"BrokenCryptoABICase6","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABICase7","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABICase8","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABICase9","ds":"bench","r":14,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABSCase1","ds":"bench","r":14,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABSCase2","ds":"bench","r":14,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABSCase3","ds":"bench","r":14,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABSCase4","ds":"bench","r":14,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoABSCase5","ds":"bench","r":14,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoBBCase1","ds":"bench","r":14,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"BrokenCryptoBBCase2","ds":"bench","r":14,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoBBCase3","ds":"bench","r":14,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoBBCase4","ds":"bench","r":14,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoBBCase5","ds":"bench","r":14,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenCryptoCorrected","ds":"bench","r":14,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"InsecureAsymmetricCipherABICase1","ds":"bench","r":15,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"InsecureAsymmetricCipherABICase2","ds":"bench","r":15,"c":"interprocedural","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"InsecureAsymmetricCipherBBCase1","ds":"bench","r":15,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABICase1","ds":"bench","r":16,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABICase2","ds":"bench","r":16,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABICase3","ds":"bench","r":16,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABICase4","ds":"bench","r":16,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABICase5","ds":"bench","r":16,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABICase6","ds":"bench","r":16,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABICase7","ds":"bench","r":16,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABICase8","ds":"bench","r":16,"c":"interprocedural","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABSCase1","ds":"bench","r":16,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABSCase2","ds":"bench","r":16,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABSCase3","ds":"bench","r":16,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashABSCase4","ds":"bench","r":16,"c":"field_sensitive","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"BrokenHashBBCase1","ds":"bench","r":16,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"BrokenHashBBCase2","ds":"bench","r":16,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"BrokenHashBBCase3","ds":"bench","r":16,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"BrokenHashBBCase4","ds":"bench","r":16,"c":"basic","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"BrokenHashCorrected","ds":"bench","r":16,"c":"correct","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"HardcodedKeyTest1","ds":"suite","r":1,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"ObfuscatedKeySliceTest13","ds":"suite","r":1,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"SafeAESGCMTest14","ds":"suite","r":1,"c":"suite_secure","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"HardcodedKeyStorePassTest11","ds":"suite","r":3,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"StaticSeedSecureRandomTest9","ds":"suite","r":8,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"InsecureRandomTest8","ds":"suite","r":9,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"DefaultAESECBTest5","ds":"suite","r":11,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"ECBModeTest4","ds":"suite","r":11,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"StaticIVTest6","ds":"suite","r":12,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"LowIterationPBETest12","ds":"suite","r":13,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0},{"n":"WeakCipherDESTest7","ds":"suite","r":14,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"SmallRSAKeyTest10","ds":"suite","r":15,"c":"suite_misuse","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":1},{"n":"SafeSHA256Test15","ds":"suite","r":16,"c":"suite_secure","y":0,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"WeakHashMD5Test2","ds":"suite","r":16,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"WeakHashSHA1Test3","ds":"suite","r":16,"c":"suite_misuse","y":1,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":1},{"n":"PilotClippedHexKey","ds":"pilot","r":1,"c":"pilot_fn_probe","y":1,"cg2019":0,"cg2019nr":0,"cg2020":0,"fsb":0},{"n":"PilotSecureKey","ds":"pilot","r":1,"c":"pilot_negative","y":0,"cg2019":1,"cg2019nr":1,"cg2020":0,"fsb":0},{"n":"PilotInfeasibleIteration","ds":"pilot","r":13,"c":"pilot_fp_probe","y":0,"cg2019":1,"cg2019nr":1,"cg2020":1,"fsb":0}];
+const TOOLS = {
+  cg2020: "CryptoGuard 2020",
+  cg2019: "CryptoGuard 2019",
+  cg2019nr: "CryptoGuard 2019, refinement off",
+  fsb: "SpotBugs + FindSecBugs"
+};
+const RULES = {1:"Hard-coded key",2:"PBE password",3:"KeyStore password",4:"Hostname verifier",5:"Trust manager",6:"SSL socket factory",7:"HTTP",8:"Predictable seed",9:"Weak PRNG",10:"Static salt",11:"ECB mode",12:"Static IV",13:"PBE iterations",14:"Broken cipher",15:"Small RSA key",16:"Broken hash"};
+const CATS = {basic:"Basic", interprocedural:"Inter-procedural", field_sensitive:"Field-sensitive", fp_test:"FP test", correct:"Secure (bench)", suite_misuse:"Suite misuse", suite_secure:"Suite secure", pilot:"Pilot"};
+const catOf = c => c.startsWith("pilot") ? "pilot" : c;
+const PAPER = {cg: {tp:85, fp:0, fn:11}, sb: {tp:26, fp:11, fn:70}};
+const $ = id => document.getElementById(id);
+let showAll = false;
+
+// ---------- build controls ----------
+for (const sel of [$("toolA"), $("toolB")]) for (const [k, v] of Object.entries(TOOLS)) sel.add(new Option(v, k));
+$("toolA").value = "cg2020"; $("toolB").value = "fsb";
+$("cats").innerHTML = Object.entries(CATS).map(([k, v]) => `<label class="chip" for="c-${k}"><input type="checkbox" id="c-${k}" data-cat="${k}" checked><span>${v}</span></label>`).join("");
+$("rules").innerHTML = Object.entries(RULES).map(([k, v]) => `<label class="chip" for="r-${k}" title="${v}"><input type="checkbox" id="r-${k}" data-rule="${k}" checked><span>${k} ${v}</span></label>`).join("");
+const ruleBoxes = [...document.querySelectorAll("[data-rule]")];
+const catBoxes = [...document.querySelectorAll("[data-cat]")];
+const setRules = list => { ruleBoxes.forEach(b => b.checked = list.includes(+b.dataset.rule)); update(); };
+$("r-all").onclick = () => setRules([...Array(16)].map((_, i) => i + 1));
+$("r-shared").onclick = () => setRules([1, 2, 3, 11, 14, 16]);
+$("r-const").onclick = () => setRules([1, 2, 3, 8, 10, 12, 13, 15]);
+$("r-none").onclick = () => setRules([]);
+
+function preset(p) {
+  const all = [...Array(16)].map((_, i) => i + 1);
+  ruleBoxes.forEach(b => b.checked = all.includes(+b.dataset.rule));
+  catBoxes.forEach(b => b.checked = true);
+  $("opt-arr").checked = true; $("opt-unk").checked = false;
+  const ds = {main: [1,1,0], abl: [1,0,0], paper: [1,0,0], suite: [0,1,0]}[p];
+  [$("ds-bench").checked, $("ds-suite").checked, $("ds-pilot").checked] = ds.map(Boolean);
+  const t = {main: ["cg2020","fsb"], abl: ["cg2019","cg2019nr"], paper: ["cg2019","fsb"], suite: ["cg2020","fsb"]}[p];
+  $("toolA").value = t[0]; $("toolB").value = t[1];
+  update();
+}
+$("p-main").onclick = () => preset("main");
+$("p-abl").onclick = () => preset("abl");
+$("p-paper").onclick = () => preset("paper");
+$("p-suite").onclick = () => preset("suite");
+document.querySelectorAll("input, select").forEach(el => el.addEventListener("input", update));
+
+// ---------- scoring ----------
+function detected(e, tool, o) {
+  let d = e[tool] === 1;
+  if (tool === "cg2019nr" && e.arr && !o.countArr) d = false;
+  if (tool === "cg2020" && e.unk && o.lenient) d = true;
+  return d;
+}
+function counts(rows, tool, o) {
+  let tp = 0, fp = 0, fn = 0, tn = 0;
+  for (const e of rows) { const d = detected(e, tool, o); if (e.y) d ? tp++ : fn++; else d ? fp++ : tn++; }
+  return {tp, fp, fn, tn};
+}
+function metrics(c, beta) {
+  const p = c.tp + c.fp ? c.tp / (c.tp + c.fp) : NaN;
+  const r = c.tp + c.fn ? c.tp / (c.tp + c.fn) : NaN;
+  const b2 = beta * beta;
+  const f = (p + r) > 0 && !isNaN(p) && !isNaN(r) ? (1 + b2) * p * r / (b2 * p + r) : NaN;
+  return {p, r, f};
+}
+// seeded PRNG (mulberry32) so intervals are repeatable
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function quantile(sorted, q) { if (!sorted.length) return NaN; const i = (sorted.length - 1) * q, lo = Math.floor(i), hi = Math.ceil(i); return sorted[lo] + (sorted[hi] - sorted[lo]) * (i - lo); }
+function bootstrap(rows, o) {
+  const rand = rng(o.seed), n = rows.length, nB = o.nB;
+  const acc = {A: {p: [], r: [], f: []}, B: {p: [], r: [], f: []}, dr: []};
+  if (!n) return acc;
+  const dA = rows.map(e => detected(e, o.A, o)), dB = rows.map(e => detected(e, o.B, o));
+  for (let b = 0; b < nB; b++) {
+    const cA = {tp:0,fp:0,fn:0}, cB = {tp:0,fp:0,fn:0};
+    for (let k = 0; k < n; k++) {
+      const i = Math.floor(rand() * n), y = rows[i].y;
+      if (y) { dA[i] ? cA.tp++ : cA.fn++; dB[i] ? cB.tp++ : cB.fn++; }
+      else { if (dA[i]) cA.fp++; if (dB[i]) cB.fp++; }
+    }
+    const mA = metrics(cA, o.beta), mB = metrics(cB, o.beta);
+    for (const k of ["p", "r", "f"]) { if (!isNaN(mA[k])) acc.A[k].push(mA[k]); if (!isNaN(mB[k])) acc.B[k].push(mB[k]); }
+    if (!isNaN(mA.r) && !isNaN(mB.r)) acc.dr.push(mA.r - mB.r);
+  }
+  for (const s of [acc.A, acc.B]) for (const k in s) s[k].sort((x, y) => x - y);
+  acc.dr.sort((x, y) => x - y);
+  return acc;
+}
+function logC(n, k) { let s = 0; for (let i = 1; i <= k; i++) s += Math.log(n - k + i) - Math.log(i); return s; }
+function mcnemar(b, c) {
+  const n = b + c; if (!n) return 1;
+  const k = Math.min(b, c); let s = 0;
+  for (let i = 0; i <= k; i++) s += Math.exp(logC(n, i) - n * Math.LN2);
+  return Math.min(1, 2 * s);
+}
+
+// ---------- rendering ----------
+const pct = x => isNaN(x) ? "—" : (100 * x).toFixed(1) + "%";
+const ci = (arr, a) => arr.length < 20 ? "interval needs more cases" : `${pct(quantile(arr, a / 2))} to ${pct(quantile(arr, 1 - a / 2))}`;
+function toolCard(cls, tool, c, m, boot, alpha, o, paper) {
+  const paperLine = paper ? `<div class="paper">Paper Table 7: ${paper.tp} TP · ${paper.fp} FP · ${paper.fn} FN · precision ${pct(paper.tp/(paper.tp+paper.fp))} · recall ${pct(paper.tp/(paper.tp+paper.fn))}</div>` : "";
+  return `<article class="panel tool ${cls}">
+    <div class="name">${TOOLS[tool]}</div>
+    <div class="metrics">
+      <div class="metric"><span class="k">Precision</span><span class="v">${pct(m.p)}</span><span class="ci">${ci(boot.p, alpha)}</span></div>
+      <div class="metric"><span class="k">Recall</span><span class="v">${pct(m.r)}</span><span class="ci">${ci(boot.r, alpha)}</span></div>
+      <div class="metric"><span class="k">F${o.betaLabel}</span><span class="v">${pct(m.f)}</span><span class="ci">${ci(boot.f, alpha)}</span></div>
+    </div>
+    <div class="cm" role="table" aria-label="Confusion matrix">
+      <div class="h"></div><div class="h">Flagged</div><div class="h">Not flagged</div>
+      <div class="h">Misuse</div><div class="cell ok"><span>TP</span><b>${c.tp}</b></div><div class="cell no"><span>FN</span><b>${c.fn}</b></div>
+      <div class="h">Secure</div><div class="cell no"><span>FP</span><b>${c.fp}</b></div><div class="cell ok"><span>TN</span><b>${c.tn}</b></div>
+    </div>
+    ${paperLine}
+  </article>`;
+}
+function chart(rows, o) {
+  const rules = [...new Set(rows.filter(e => e.y).map(e => e.r))].sort((a, b) => a - b);
+  if (!rules.length) return `<p class="quiet">No misuse cases in the current selection.</p>`;
+  const W = 760, left = 190, right = 70, rowH = 34, top = 24, H = top + rules.length * rowH + 8, inner = W - left - right;
+  const x = v => left + v * inner;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:560px" role="img" aria-label="Recall by rule for both tools">`;
+  for (const t of [0, .25, .5, .75, 1]) s += `<line x1="${x(t)}" x2="${x(t)}" y1="${top - 6}" y2="${H - 4}" stroke="var(--line)" stroke-width="1"/><text x="${x(t)}" y="${top - 10}" font-size="11" text-anchor="middle" class="muted">${t * 100}%</text>`;
+  rules.forEach((r, i) => {
+    const sub = rows.filter(e => e.y && e.r === r), n = sub.length;
+    const ra = sub.filter(e => detected(e, o.A, o)).length / n, rb = sub.filter(e => detected(e, o.B, o)).length / n;
+    const y = top + i * rowH;
+    s += `<text x="${left - 10}" y="${y + 16}" font-size="12" text-anchor="end" class="lbl">${r} ${RULES[r]}</text>`;
+    s += `<text x="${left - 10}" y="${y + 28}" font-size="10" text-anchor="end" class="muted">n=${n}</text>`;
+    s += `<rect x="${x(0)}" y="${y + 4}" width="${Math.max(ra * inner, 1.5)}" height="11" rx="2" fill="var(--a)"/>`;
+    s += `<rect x="${x(0)}" y="${y + 17}" width="${Math.max(rb * inner, 1.5)}" height="11" rx="2" fill="var(--b)"/>`;
+    s += `<text x="${x(ra) + 6}" y="${y + 13.5}" font-size="10.5">${Math.round(ra * 100)}%</text>`;
+    s += `<text x="${x(rb) + 6}" y="${y + 26.5}" font-size="10.5">${Math.round(rb * 100)}%</text>`;
+  });
+  return s + `</svg>`;
+}
+function diffTable(rows, o) {
+  const d = rows.filter(e => detected(e, o.A, o) !== detected(e, o.B, o));
+  if (!d.length) return `<p class="quiet">The two tools agree on every selected case.</p>`;
+  const LIMIT = 12;
+  const cell = (e, t) => { const hit = detected(e, t, o); const right = hit === !!e.y; return `<td class="${right ? "hit" : "miss"}">${hit ? "flagged" : "silent"}</td>`; };
+  return `<table><thead><tr><th>Case</th><th>Set</th><th>Rule</th><th>Truth</th><th>${TOOLS[o.A]}</th><th>${TOOLS[o.B]}</th></tr></thead><tbody>` +
+    d.map((e, i) => `<tr${i >= LIMIT ? ' class="more"' : ""}><td class="mono">${e.n}${e.arr && (o.A === "cg2019nr" || o.B === "cg2019nr") ? " *" : ""}${e.unk && (o.A === "cg2020" || o.B === "cg2020") ? " †" : ""}</td><td>${{bench: "Bench", suite: "Suite", pilot: "Pilot"}[e.ds]}</td><td>${e.r} ${RULES[e.r]}</td><td>${e.y ? "misuse" : "secure"}</td>${cell(e, o.A)}${cell(e, o.B)}</tr>`).join("") +
+    `</tbody></table>` + (d.length > LIMIT ? `<p style="margin:8px 0 0"><button class="btn" type="button" id="more-btn">${showAll ? "Show fewer" : "Show all " + d.length + " cases"}</button></p>` : "") + `<p class="quiet" style="font-size:12px;margin:8px 0 0">Green means the tool was right, red means it was wrong. * hit comes from an array length or index. † alert reported at an unknown location.</p>`;
+}
+function update() {
+  const betaExp = +$("beta").value, beta = Math.pow(2, betaExp);
+  $("beta-o").textContent = beta.toFixed(beta < 1 ? 2 : 1);
+  $("conf-o").textContent = $("conf").value + "%";
+  $("seed-o").textContent = $("seed").value;
+  const nB = +$("boot").value, seed = +$("seed").value;
+  const opt = {
+    A: $("toolA").value, B: $("toolB").value,
+    countArr: $("opt-arr").checked, lenient: $("opt-unk").checked,
+    beta, betaLabel: beta === 1 ? "1" : "β=" + beta.toFixed(beta < 1 ? 2 : 1)
+  };
+  const ds = {bench: $("ds-bench").checked, suite: $("ds-suite").checked, pilot: $("ds-pilot").checked};
+  const rulesOn = new Set(ruleBoxes.filter(b => b.checked).map(b => +b.dataset.rule));
+  const catsOn = new Set(catBoxes.filter(b => b.checked).map(b => b.dataset.cat));
+  const rows = CASES.filter(e => ds[e.ds] && rulesOn.has(e.r) && catsOn.has(catOf(e.c)));
+  const pos = rows.filter(e => e.y).length;
+  $("status").textContent = `${rows.length} cases selected · ${pos} misuse · ${rows.length - pos} secure · ${nB} bootstrap resamples · seed ${seed}`;
+  $("lg-a").textContent = TOOLS[opt.A]; $("lg-b").textContent = TOOLS[opt.B];
+  const cA = counts(rows, opt.A, opt), cB = counts(rows, opt.B, opt);
+  const mA = metrics(cA, beta), mB = metrics(cB, beta);
+  const boot = bootstrap(rows, {...opt, seed, nB});
+  const alpha = 1 - $("conf").value / 100;
+  // paper reference only when the selection is exactly the full benchmark
+  const fullBench = ds.bench && !ds.suite && !ds.pilot && rulesOn.size === 16 && ["basic","interprocedural","field_sensitive","fp_test","correct"].every(c => catsOn.has(c));
+  const paperFor = t => !fullBench ? null : t === "fsb" ? PAPER.sb : (t === "cg2019" || t === "cg2020") ? PAPER.cg : null;
+  $("duo").innerHTML = toolCard("a", opt.A, cA, mA, boot.A, alpha, opt, paperFor(opt.A)) + toolCard("b", opt.B, cB, mB, boot.B, alpha, opt, paperFor(opt.B));
+  // paired comparison on misuse cases
+  const P = rows.filter(e => e.y);
+  let b = 0, c = 0;
+  for (const e of P) { const a1 = detected(e, opt.A, opt), b1 = detected(e, opt.B, opt); if (a1 && !b1) b++; if (!a1 && b1) c++; }
+  const p = mcnemar(b, c), sig = p < alpha;
+  const dr = mA.r - mB.r;
+  let text;
+  if (!P.length) text = "No misuse cases are selected, so there is nothing to compare.";
+  else if (b + c === 0) text = `Both tools catch exactly the same ${P.length > 1 ? "cases" : "case"}. There is no difference to test.`;
+  else text = `${TOOLS[opt.A]} catches ${b} misuse ${b === 1 ? "case" : "cases"} that ${TOOLS[opt.B]} misses, and ${TOOLS[opt.B]} catches ${c} that ${TOOLS[opt.A]} misses. ` +
+    (sig ? `At the ${$("conf").value}% level this gap is too large to be chance (exact McNemar p = ${p < 0.0001 ? p.toExponential(1) : p.toFixed(4)}).` : `At the ${$("conf").value}% level this could be chance (exact McNemar p = ${p.toFixed(3)}).`);
+  $("verdict").innerHTML = `${text} ${P.length && b + c ? `<span class="pill ${sig ? "sig" : ""}">${sig ? "significant" : "not significant"}</span>` : ""}`;
+  $("stats").innerHTML = [
+    ["Recall gap (A minus B)", isNaN(dr) ? "—" : (dr >= 0 ? "+" : "") + (100 * dr).toFixed(1) + " pts"],
+    [`${$("conf").value}% interval of the gap`, boot.dr.length < 20 ? "—" : `${(100 * quantile(boot.dr, alpha / 2)).toFixed(1)} to ${(100 * quantile(boot.dr, 1 - alpha / 2)).toFixed(1)}`],
+    ["Only A catches", String(b)], ["Only B catches", String(c)],
+    ["McNemar p-value", P.length && b + c ? (p < 0.0001 ? p.toExponential(1) : p.toFixed(4)) : "—"]
+  ].map(([k, v]) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
+  $("chart").innerHTML = chart(rows, opt);
+  $("diff").innerHTML = diffTable(rows, opt);
+  $("diff").classList.toggle("show-all", showAll);
+  const mb = $("more-btn");
+  if (mb) mb.onclick = () => { showAll = !showAll; update(); };
+}
+update();
+</script>

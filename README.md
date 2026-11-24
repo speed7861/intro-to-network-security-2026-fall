@@ -76,6 +76,8 @@ From `runs/20261123_final` (112 test cases, 96 vulnerable and 16 secure). The No
 
 Results on the custom suite and the root-cause analysis are in `docs/results.md`.
 
+To explore the results yourself, open `demo/index.html` in a browser. It has every test case built in and lets you switch tools, filter cases and change scoring rules, with confidence intervals and a significance test (see `demo/README.md`).
+
 ## Repository layout
 
 ```
@@ -83,6 +85,7 @@ harness/       scripts: setup, build, run, score, sanity checks, probes, refinem
 data/          ground truth for the 112 benchmark cases
 custom_tests/  Abdul's 15 test files, our 3 pilot files (src/custom/pilot), labels, Abdul's SpotBugs report
 probes/        small variants of the missed cases, used to find out why they are missed
+demo/          interactive results explorer (open demo/index.html in a browser)
 runs/          one folder per run: raw tool output, manifests, scored results, checksums
 docs/          results, protocol, contribution plan, team progress
 logs/LOG.md    lab notebook
