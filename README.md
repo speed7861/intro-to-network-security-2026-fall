@@ -76,7 +76,7 @@ From `runs/20261123_final` (112 test cases, 96 vulnerable and 16 secure). The No
 
 Results on the custom suite and the root-cause analysis are in `docs/results.md`.
 
-To explore the results yourself, open `demo/index.html` in a browser. It has every test case built in and lets you switch tools, filter cases and change scoring rules, with confidence intervals and a significance test (see `demo/README.md`).
+To explore the results yourself, clone or download the repo and open `demo/index.html` in a browser (GitHub only shows the file as source). It has every test case built in and lets you switch tools, filter cases and change scoring rules, with confidence intervals and a significance test (see `demo/README.md`, which also lists the result files behind each demo step).
 
 ## Repository layout
 
